@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Diskusi</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <!-- <div *ngFor="let dis of diskusi">
+    <ion-card>
+      <ion-card-content>
+        {{dis.judul_artikel}}
+      </ion-card-content>
+    </ion-card>
+  </div> -->
+
+  <!-- ini nama : {{nama}} <br />
+
+  <input type="text" [(ngModel)]="test" placeholder="masukkan test disini"/>
+  {{test}} -->
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Value</ion-label>
+      <ion-input type="text" [(ngModel)]="isi"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button ion-button (click)="kirim()">Kirim</button>
+  </div>
+
+  {{response}}
+
+</ion-content>
