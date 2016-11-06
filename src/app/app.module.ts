@@ -9,22 +9,15 @@ import { AboutPage } from '../pages/about/about';
 import { PopoverPage } from '../pages/about-popover/about-popover';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
-import { MapPage } from '../pages/map/map';
-import { SchedulePage } from '../pages/schedule/schedule';
-import { ScheduleFilterPage } from '../pages/schedule-filter/schedule-filter';
-import { SessionDetailPage } from '../pages/session-detail/session-detail';
 import { SignupPage } from '../pages/signup/signup';
-import { SpeakerDetailPage } from '../pages/speaker-detail/speaker-detail';
-import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
-import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 
-import {CobaPage} from '../pages/coba/coba';
-import {ArtikelPage} from '../pages/artikel/artikel';
-import {CariPage} from '../pages/cari/cari';
+import { ArtikelPage } from '../pages/artikel/artikel';
+import { CariPage } from '../pages/cari/cari';
+import { DiskusiPage } from '../pages/diskusi/diskusi';
 
 
 @NgModule({
@@ -33,19 +26,13 @@ import {CariPage} from '../pages/cari/cari';
     AboutPage,
     AccountPage,
     LoginPage,
-    MapPage,
     PopoverPage,
-    SchedulePage,
-    ScheduleFilterPage,
-    SessionDetailPage,
     SignupPage,
-    SpeakerDetailPage,
-    SpeakerListPage,
     TabsPage,
     TutorialPage,
-    CobaPage,
     ArtikelPage,
-    CariPage
+    CariPage,
+    DiskusiPage
   ],
   imports: [
     IonicModule.forRoot(ConferenceApp)
@@ -56,20 +43,14 @@ import {CariPage} from '../pages/cari/cari';
     AboutPage,
     AccountPage,
     LoginPage,
-    MapPage,
     PopoverPage,
-    SchedulePage,
-    ScheduleFilterPage,
-    SessionDetailPage,
     SignupPage,
-    SpeakerDetailPage,
-    SpeakerListPage,
     TabsPage,
     TutorialPage,
-    CobaPage,
     ArtikelPage,
-    CariPage
+    CariPage,
+    DiskusiPage
   ],
-  providers: [ConferenceData, UserData, Storage]
+  providers: [UserData, Storage]
 })
 export class AppModule {}

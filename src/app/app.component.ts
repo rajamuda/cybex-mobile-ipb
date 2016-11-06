@@ -8,8 +8,8 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
+import { AboutPage } from '../pages/about/about';
 
-import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 
 export interface PageObj {
@@ -32,18 +32,20 @@ export class ConferenceApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageObj[] = [
-    { title: 'Schedule', component: TabsPage, icon: 'calendar' },
-    { title: 'Speakers', component: TabsPage, index: 1, icon: 'contacts' },
-    { title: 'Map', component: TabsPage, index: 2, icon: 'map' },
-    { title: 'About', component: TabsPage, index: 3, icon: 'information-circle' },
+    { title: 'Diskusi', component: TabsPage, icon: 'people' },
+    { title: 'Artikel', component: TabsPage, index: 1, icon: 'book' },
+    { title: 'Cari', component: TabsPage, index: 2, icon: 'search' },
+    // { title: 'About', component: TabsPage, index: 3, icon: 'information-circle' },
   ];
   loggedInPages: PageObj[] = [
     { title: 'Account', component: AccountPage, icon: 'person' },
-    { title: 'Logout', component: TabsPage, icon: 'log-out', logsOut: true }
+    { title: 'Logout', component: TabsPage, icon: 'log-out', logsOut: true },
+    { title: 'Tentang', component: AboutPage, icon: 'information-circle' },
   ];
   loggedOutPages: PageObj[] = [
     { title: 'Login', component: LoginPage, icon: 'log-in' },
-    { title: 'Signup', component: SignupPage, icon: 'person-add' }
+    { title: 'Tentang', component: AboutPage, icon: 'information-circle' },
+    // { title: 'Signup', component: SignupPage, icon: 'person-add' }
   ];
   rootPage: any = TutorialPage;
 
@@ -51,17 +53,13 @@ export class ConferenceApp {
     public events: Events,
     public userData: UserData,
     public menu: MenuController,
-    platform: Platform,
-    confData: ConferenceData
+    platform: Platform
   ) {
     // Call any initial plugins when ready
     platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
-
-    // load the conference data
-    confData.load();
 
     // decide which menu items should be hidden by current login status stored in local storage
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
