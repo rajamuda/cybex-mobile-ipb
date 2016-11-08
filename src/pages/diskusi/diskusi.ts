@@ -9,13 +9,13 @@ import { ActionSheetController } from 'ionic-angular';
   templateUrl: 'diskusi.html'
 })
 export class DiskusiPage {
-  private status;
-  private nama;
-  private test;
-  private diskusi;
-  private isi;
+  public status;
+  public nama;
+  public test;
+  public diskusi;
+  public isi;
 
-  private response;
+  public response;
 
   constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
 

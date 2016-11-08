@@ -5,7 +5,6 @@ import { Splashscreen, StatusBar } from 'ionic-native';
 
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
-import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { AboutPage } from '../pages/about/about';
