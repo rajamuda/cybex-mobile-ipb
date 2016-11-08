@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 
 import { NavParams } from 'ionic-angular';
 
-import { AboutPage } from '../about/about';
-
 import { ArtikelPage } from '../artikel/artikel';
 import { CariPage } from '../cari/cari';
 import { DiskusiPage } from '../diskusi/diskusi';
@@ -17,7 +15,6 @@ export class TabsPage {
   tab1Root: any = DiskusiPage;
   tab2Root: any = ArtikelPage;
   tab3Root: any = CariPage;
-  // tab4Root: any = AboutPage;
   mySelectedIndex: number;
 
   constructor(navParams: NavParams) {
