@@ -11,17 +11,19 @@ import { UserData } from '../../providers/user-data';
   templateUrl: 'signup.html'
 })
 export class SignupPage {
-  signup: {username?: string, password?: string} = {};
+  signup: {username?: string, password?: string, nama?: string, password2?: string} = {};
   submitted = false;
 
   constructor(public navCtrl: NavController, public userData: UserData) {}
 
   onSignup(form) {
-    this.submitted = true;
-
-    if (form.valid) {
-      this.userData.signup(this.signup.username);
-      this.navCtrl.push(TabsPage);
-    }
+      console.log(this.signup)
+//    this.submitted = true;
+//
+//    if (form.valid) {
+//      this.userData.signup(this.signup.username);
+//      this.navCtrl.push(TabsPage);
+//        this.navCtrl.push
+//    }
   }
 }

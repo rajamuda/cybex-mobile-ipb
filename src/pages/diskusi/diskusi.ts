@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
+import { ActionSheetController } from 'ionic-angular';
+
 @Component({
   selector: 'page-diskusi',
   templateUrl: 'diskusi.html'
@@ -15,19 +17,14 @@ export class DiskusiPage {
 
   private response;
 
-  constructor(public navCtrl: NavController, public http: Http) {
+  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
 
   }
 
   ionViewDidLoad() {
-    let ivan;
-    ivan = ''
     console.log('Hello DiskusiPage Page');
-
     this.http.get('http://cybex.agri.web.id/api/all_diskusi.php').subscribe(res => {
-      // this.status = res.json();
       this.diskusi = res.json();
-      // console.log(this.nama);
     });
   }
 
@@ -42,6 +39,33 @@ export class DiskusiPage {
         this.response = '';
       }
     })
+  }
+    
+ presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Pilihan',
+      buttons: [
+        {
+          text: 'Tulis Artikel',
+          role: 'tulisArtikel',
+          handler: () => {
+            console.log('Destructive clicked');
+          }
+        },{
+          text: 'Tanya/Diskusi',
+          handler: () => {
+            console.log('Archive clicked');
+          }
+        },{
+          text: 'Batal',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
 }

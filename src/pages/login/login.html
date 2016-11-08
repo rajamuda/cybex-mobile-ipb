@@ -21,7 +21,7 @@
         </ion-input>
       </ion-item>
       <p [hidden]="username.valid || submitted == false" color="danger" padding-left>
-        Username is required
+        Username harus diisi
       </p>
 
       <ion-item>
@@ -30,7 +30,7 @@
         </ion-input>
       </ion-item>
       <p [hidden]="password.valid || submitted == false" color="danger" padding-left>
-        Password is required
+        Password harus diisi
       </p>
 
       <ion-row responsive-sm>
@@ -38,7 +38,7 @@
           <button ion-button (click)="onLogin(loginForm)" type="submit" color="primary" block>Login</button>
         </ion-col>
         <ion-col>
-          <button ion-button (click)="onSignup()" color="light" block>Signup</button>
+          <button ion-button (click)="onSignup()" color="light" block>Daftar Baru</button>
         </ion-col>
       </ion-row>
     </form>

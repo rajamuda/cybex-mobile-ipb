@@ -38,16 +38,16 @@ export class ConferenceApp {
     // { title: 'About', component: TabsPage, index: 3, icon: 'information-circle' },
   ];
   loggedInPages: PageObj[] = [
-    { title: 'Account', component: AccountPage, icon: 'person' },
-    { title: 'Logout', component: TabsPage, icon: 'log-out', logsOut: true },
+    { title: 'Akun Saya', component: AccountPage, icon: 'person' },
+    { title: 'Keluar', component: TabsPage, icon: 'log-out', logsOut: true },
     { title: 'Tentang', component: AboutPage, icon: 'information-circle' },
   ];
   loggedOutPages: PageObj[] = [
-    { title: 'Login', component: LoginPage, icon: 'log-in' },
+    { title: 'Login/Daftar', component: LoginPage, icon: 'log-in' },
     { title: 'Tentang', component: AboutPage, icon: 'information-circle' },
     // { title: 'Signup', component: SignupPage, icon: 'person-add' }
   ];
-  rootPage: any = TutorialPage;
+  rootPage: any = TabsPage;
 
   constructor(
     public events: Events,
