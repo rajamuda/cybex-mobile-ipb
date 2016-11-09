@@ -18,8 +18,12 @@
 
   <div *ngFor="let dis of diskusi">
     <ion-card>
+      <ion-card-header>
+        <b>{{dis.judul_artikel}}</b>
+      </ion-card-header>
       <ion-card-content>
-        {{dis.judul_artikel}}
+        <div style="color: #ddd">Oleh: {{dis.nama_user_input}}</div>
+        <div [innerHTML]="dis.isi_artikel"></div>
       </ion-card-content>
     </ion-card>
   </div>

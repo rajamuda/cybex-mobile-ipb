@@ -15,5 +15,47 @@
 
 
 <ion-content padding>
-    
+  <div *ngFor="let post of posts">
+    <ion-card>
+      <ion-card-header>
+        <b>{{post.judul_artikel}}</b><hr style="padding: 0;margin:0">
+      </ion-card-header>
+      <ion-card-content>
+        {{post.nama_user_input}} | {{post.tanggal}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+<!--   <img src="img/aaa.jpg">
+  <div padding-left *ngFor="#post of posts">
+    <h3 primary>
+      {{post.judul_artikel}}
+    </h3>
+    <p grey>
+      Oleh : {{post.nama_user_input}}. Pada 18 menit yang lalu.
+    </p>
+    <p class="text">
+      {{post.isi_artikel}}
+    </p>
+    <ion-badge item-right secondary> <ion-icon name="eye"></ion-icon>  Lihat : 2</ion-badge>
+    <ion-badge item-right instagram> <ion-icon name="chatbubbles"></ion-icon>  Komentar : 2</ion-badge>
+    <ion-badge item-right primary><ion-icon name="snow"></ion-icon> Padi </ion-badge>
+  </div>
+  <hr>
+  
+  <p class="judul" padding-left instagram>
+      Komentar :
+  </p>
+  
+  <div>
+    <ion-card>
+      <ion-card-header class="midnight">
+        Pak Junaidi <span class="grey"> - 30 menit yang lalu</span>
+      </ion-card-header>
+      <ion-card-content>
+        The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+      </ion-card-content>
+    </ion-card>
+  </div> -->
+
+  
 </ion-content>
