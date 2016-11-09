@@ -15,6 +15,7 @@
 
 
 <ion-content padding>
+<<<<<<< HEAD
   <div *ngFor="let post of posts">
     <ion-card>
       <ion-card-header>
@@ -27,10 +28,14 @@
   </div>
 <!--   <img src="img/aaa.jpg">
   <div padding-left *ngFor="#post of posts">
+=======
+  <div padding-left *ngFor="let post of artikel">
+>>>>>>> 546464c014b577cd2fd31caccd95c39bf9a3453d
     <h3 primary>
       {{post.judul_artikel}}
     </h3>
     <p grey>
+<<<<<<< HEAD
       Oleh : {{post.nama_user_input}}. Pada 18 menit yang lalu.
     </p>
     <p class="text">
@@ -59,3 +64,20 @@
 
   
 </ion-content>
+=======
+      Oleh : {{post.nama_user_input}}. Pada {{post.tanggal}}.
+    </p>
+    <p class="text" [innerHTML]=post.isi_artikel>
+    </p>
+    <ion-badge item-right secondary> <ion-icon name="eye"></ion-icon>  Lihat : {{post.total_baca}}</ion-badge>
+    <ion-badge item-right instagram> <ion-icon name="chatbubbles"></ion-icon>  Komentar : {{post.total_komentar}}</ion-badge>
+    <ion-badge item-right primary><ion-icon name="snow"></ion-icon> Padi </ion-badge>
+  </div>
+
+  <ion-fab right bottom>
+    <button ion-fab color="light" (click)="presentActionSheet()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+  {{response}}
+</ion-content>
+>>>>>>> 546464c014b577cd2fd31caccd95c39bf9a3453d
