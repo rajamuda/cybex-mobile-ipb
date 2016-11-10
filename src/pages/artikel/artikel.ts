@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
+import { ArtikelBacaPage } from '../artikel-baca/artikel-baca'
 
 
 /*
@@ -29,6 +30,10 @@ export class ArtikelPage {
     this.http.get('http://cybex.agri.web.id/api/all_artikel.php').subscribe(res => {
       this.posts = res.json();
     });
+  }
+
+  baca(idArtikel){
+    this.navCtrl.push(ArtikelBacaPage, idArtikel);
   }
 
   presentActionSheet() {

@@ -17,7 +17,7 @@
 <ion-content padding>
 
   <div *ngFor="let dis of diskusi">
-    <ion-card>
+    <ion-card (click)="baca(dis.id_artikel)">
       <ion-card-header>
         <b>{{dis.judul_artikel}}</b>
       </ion-card-header>

@@ -17,7 +17,7 @@
 <ion-content padding>
 
   <div *ngFor="let post of posts">
-    <ion-card>
+    <ion-card (click)="baca(post.id_artikel)">
       <ion-card-header>
         <b>{{post.judul_artikel}}</b><hr style="padding: 0;margin:0">
       </ion-card-header>

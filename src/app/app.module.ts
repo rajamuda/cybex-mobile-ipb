@@ -18,6 +18,9 @@ import { UserData } from '../providers/user-data';
 import { ArtikelPage } from '../pages/artikel/artikel';
 import { CariPage } from '../pages/cari/cari';
 import { DiskusiPage } from '../pages/diskusi/diskusi';
+import { DiskusiBacaPage } from '../pages/diskusi-baca/diskusi-baca';
+import { ArtikelBacaPage } from '../pages/artikel-baca/artikel-baca';
+import { TulisArtikelPage } from '../pages/tulis-artikel/tulis-artikel';
 
 
 @NgModule({
@@ -32,7 +35,10 @@ import { DiskusiPage } from '../pages/diskusi/diskusi';
     TutorialPage,
     ArtikelPage,
     CariPage,
-    DiskusiPage
+    DiskusiPage,
+    ArtikelBacaPage,
+    DiskusiBacaPage,
+    TulisArtikelPage
   ],
   imports: [
     IonicModule.forRoot(ConferenceApp)
@@ -49,7 +55,10 @@ import { DiskusiPage } from '../pages/diskusi/diskusi';
     TutorialPage,
     ArtikelPage,
     CariPage,
-    DiskusiPage
+    DiskusiPage,
+    ArtikelBacaPage,
+    DiskusiBacaPage,
+    TulisArtikelPage
   ],
   providers: [UserData, Storage]
 })

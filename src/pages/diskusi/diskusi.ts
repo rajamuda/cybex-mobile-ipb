@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
+import { DiskusiBacaPage } from '../diskusi-baca/diskusi-baca';
 
 @Component({
   selector: 'page-diskusi',
@@ -26,6 +27,11 @@ export class DiskusiPage {
     this.http.get('http://cybex.agri.web.id/api/all_diskusi.php').subscribe(res => {
       this.diskusi = res.json();
     });
+  }
+
+  baca(idDis){
+    console.log("diskusi!!!");
+    this.navCtrl.push(DiskusiBacaPage, idDis);
   }
 
   kirim() {
