@@ -41,7 +41,10 @@ import { TulisArtikelPage } from '../pages/tulis-artikel/tulis-artikel';
     TulisArtikelPage
   ],
   imports: [
-    IonicModule.forRoot(ConferenceApp)
+    IonicModule.forRoot(ConferenceApp, {
+      tabsPlacement: 'top',
+      tabsHideOnSubPages: "true"
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
