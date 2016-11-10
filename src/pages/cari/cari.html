@@ -5,14 +5,15 @@
     </button>
     <ion-title>Cari</ion-title>
   </ion-navbar>
+  <ion-toolbar>
+   <ion-searchbar [(ngModel)]="searchQuery" (search)="getItems($event)" placeholder="Silahkan Cari Disini"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
-<ion-toolbar>
-     <ion-searchbar [(ngModel)]="searchQuery" (search)="getItems($event)" placeholder="Silahkan Cari Disini"></ion-searchbar>
-</ion-toolbar>
+
 
 <ion-content padding>
   <ion-fab right bottom>
-    <button ion-fab color="light" (click)="presentActionSheet()"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="primary" (click)="presentActionSheet()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
 </ion-content>
