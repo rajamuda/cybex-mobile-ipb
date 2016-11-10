@@ -3,7 +3,10 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
-import { ArtikelBacaPage } from '../artikel-baca/artikel-baca'
+import { ArtikelBacaPage } from '../artikel-baca/artikel-baca';
+import { ArtikelTulisPage } from '../artikel-baca/tulis-artikel';
+import '../../providers/user-data';
+
 
 
 /*
