@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-	<div padding-left *ngFor="let post of posts">
+	<div padding *ngFor="let post of posts">
     <h3 primary>
       {{post.judul_artikel}}
     </h3>
@@ -39,7 +39,7 @@
         {{com.nama_user_input}} <span class="grey"> - {{com.tanggal_komentar}}</span>
       </ion-card-header>
       <ion-card-content>
-        {{com.isi_komentar}}}
+       <p [innerHTML]="com.isi_komentar"></p>
       </ion-card-content>
     </ion-card>
   </div>
