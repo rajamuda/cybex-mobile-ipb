@@ -14,4 +14,15 @@
     <button ion-fab color="primary" (click)="presentActionSheet()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
+  <div *ngFor="let post of posts">
+    <ion-card (click)="baca(post.id_artikel)">
+      <ion-card-header>
+        <b>{{post.judul_artikel}}</b><hr style="padding: 0;margin:0">
+      </ion-card-header>
+      <ion-card-content>
+        {{post.nama_user_input}} | {{post.tanggal}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>

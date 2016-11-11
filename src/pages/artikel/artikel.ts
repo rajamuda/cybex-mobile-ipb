@@ -48,13 +48,14 @@ export class ArtikelPage {
           text: 'Tulis Artikel',
           role: 'tulisArtikel',
           handler: () => {
-            console.log('Destructive clicked');
+            console.log('Tulis Artikel clicked');
             this.navCtrl.push(TulisArtikelPage);
           }
         },{
           text: 'Tanya/Diskusi',
+          role: 'tulisDiskusi',
           handler: () => {
-            console.log('Archive clicked');
+            console.log('Tulis Diskusi clicked');
             this.navCtrl.push(TulisDiskusiPage);
           }
         },{

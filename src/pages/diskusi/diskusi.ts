@@ -4,6 +4,9 @@ import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
 import { DiskusiBacaPage } from '../diskusi-baca/diskusi-baca';
+import { TulisArtikelPage } from '../tulis-artikel/tulis-artikel';
+import { TulisDiskusiPage } from '../tulis-diskusi/tulis-diskusi';
+import '../../providers/user-data';
 
 @Component({
   selector: 'page-diskusi',
@@ -55,13 +58,14 @@ export class DiskusiPage {
           text: 'Tulis Artikel',
           role: 'tulisArtikel',
           handler: () => {
-            console.log('Destructive clicked');
+            console.log('Tulis Artikel clicked');
             this.navCtrl.push(TulisArtikelPage);
           }
         },{
           text: 'Tanya/Diskusi',
+          role: 'tulisDiskusi',
           handler: () => {
-            console.log('Archive clicked');
+            console.log('Tulis Diskusi clicked');
             this.navCtrl.push(TulisDiskusiPage);
           }
         },{
