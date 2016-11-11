@@ -6,9 +6,6 @@ import { ActionSheetController } from 'ionic-angular';
 import { ArtikelBacaPage } from '../artikel-baca/artikel-baca';
 import { TulisArtikelPage } from '../tulis-artikel/tulis-artikel';
 import { TulisDiskusiPage } from '../tulis-diskusi/tulis-diskusi';
-import '../../providers/user-data';
-
-
 
 /*
   Generated class for the Artikel page.
@@ -28,12 +25,12 @@ export class ArtikelPage {
 
   }
 
-
   ionViewDidLoad() {
     console.log('Hello ArtikelPage Page');
     this.http.get('http://cybex.agri.web.id/api/all_artikel.php').subscribe(res => {
       this.posts = res.json();
     });
+  
   }
 
   baca(idArtikel){

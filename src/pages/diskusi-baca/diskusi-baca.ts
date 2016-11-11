@@ -15,6 +15,7 @@ import 'rxjs/add/operator/map';
 export class DiskusiBacaPage {
   id: any;
   posts: any;
+  comments: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
   	this.id = navParams.data;
@@ -22,6 +23,11 @@ export class DiskusiBacaPage {
   	http.get('http://cybex.agri.web.id/api/artikel_b.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
         this.posts = data;
     }); 
+
+    http.get('http://cybex.agri.web.id/api/comment.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
+        this.comments = data;
+    }); 
+
   }
 
   ionViewDidLoad() {
