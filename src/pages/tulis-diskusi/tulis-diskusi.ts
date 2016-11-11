@@ -19,4 +19,12 @@ export class TulisDiskusiPage {
     console.log('Hello TulisDiskusiPage Page');
   }
 
+  getPicture() {
+  	console.log('getPicture Clicked');
+  }
+
+  kirim() {
+  	console.log('Kirim Clicked')
+  }
+
 }
