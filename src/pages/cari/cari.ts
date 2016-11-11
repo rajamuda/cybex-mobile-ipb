@@ -45,11 +45,13 @@ export class CariPage {
           role: 'tulisArtikel',
           handler: () => {
             console.log('Destructive clicked');
+            this.navCtrl.push(TulisArtikelPage);
           }
         },{
           text: 'Tanya/Diskusi',
           handler: () => {
             console.log('Archive clicked');
+            this.navCtrl.push(TulisDiskusiPage);
           }
         },{
           text: 'Batal',

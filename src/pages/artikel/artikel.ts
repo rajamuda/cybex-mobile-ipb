@@ -4,7 +4,8 @@ import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
 import { ArtikelBacaPage } from '../artikel-baca/artikel-baca';
-import { ArtikelTulisPage } from '../artikel-baca/tulis-artikel';
+import { TulisArtikelPage } from '../tulis-artikel/tulis-artikel';
+import { TulisDiskusiPage } from '../tulis-diskusi/tulis-diskusi';
 import '../../providers/user-data';
 
 
@@ -48,11 +49,13 @@ export class ArtikelPage {
           role: 'tulisArtikel',
           handler: () => {
             console.log('Destructive clicked');
+            this.navCtrl.push(TulisArtikelPage);
           }
         },{
           text: 'Tanya/Diskusi',
           handler: () => {
             console.log('Archive clicked');
+            this.navCtrl.push(TulisDiskusiPage);
           }
         },{
           text: 'Batal',
