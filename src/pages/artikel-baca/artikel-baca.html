@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Baca Artikel</ion-title>
+    <ion-title>Baca</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -19,7 +19,7 @@
       {{post.judul_artikel}}
     </h3>
     <p grey>
-      Oleh : {{post.nama_user_input}}. Pada 18 menit yang lalu.
+      Oleh : {{post.nama_user_input}}. Pada {{post.tanggal}}.
     </p>
     <p class="text" [innerHTML]="post.isi_artikel">
     </p>
@@ -43,4 +43,8 @@
       </ion-card-content>
     </ion-card>
   </div>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="tulisKomentar()"><ion-icon name="chatboxes"></ion-icon></button>
+  </ion-fab>
 </ion-content>

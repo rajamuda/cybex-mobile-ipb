@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 
 
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+import { Camera } from 'ionic-native';
+import { ImagePicker } from 'ionic-native';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
@@ -20,10 +22,10 @@ import { UserData } from '../providers/user-data';
 import { ArtikelPage } from '../pages/artikel/artikel';
 import { CariPage } from '../pages/cari/cari';
 import { DiskusiPage } from '../pages/diskusi/diskusi';
-import { DiskusiBacaPage } from '../pages/diskusi-baca/diskusi-baca';
 import { ArtikelBacaPage } from '../pages/artikel-baca/artikel-baca';
 import { TulisArtikelPage } from '../pages/tulis-artikel/tulis-artikel';
 import { TulisDiskusiPage } from '../pages/tulis-diskusi/tulis-diskusi';
+import { TulisKomentarPage } from '../pages/tulis-komentar/tulis-komentar';
 
 
 @NgModule({
@@ -40,9 +42,9 @@ import { TulisDiskusiPage } from '../pages/tulis-diskusi/tulis-diskusi';
     CariPage,
     DiskusiPage,
     ArtikelBacaPage,
-    DiskusiBacaPage,
     TulisArtikelPage,
-    TulisDiskusiPage
+    TulisDiskusiPage,
+    TulisKomentarPage
   ],
   imports: [
     InfiniteScrollModule,
@@ -65,9 +67,9 @@ import { TulisDiskusiPage } from '../pages/tulis-diskusi/tulis-diskusi';
     CariPage,
     DiskusiPage,
     ArtikelBacaPage,
-    DiskusiBacaPage,
     TulisArtikelPage,
-    TulisDiskusiPage
+    TulisDiskusiPage,
+    TulisKomentarPage
   ],
   providers: [UserData, Storage]
 })

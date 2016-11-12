@@ -3,19 +3,22 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
-import { DiskusiBacaPage } from '../diskusi-baca/diskusi-baca';
+import { ArtikelBacaPage } from '../artikel-baca/artikel-baca';
 import { TulisArtikelPage } from '../tulis-artikel/tulis-artikel';
 import { TulisDiskusiPage } from '../tulis-diskusi/tulis-diskusi';
 import '../../providers/user-data';
 
+/*
+  Generated class for the Diskusi page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+*/
 @Component({
   selector: 'page-diskusi',
   templateUrl: 'diskusi.html'
 })
 export class DiskusiPage {
-  public status;
-  public nama;
-  public test;
   public diskusi;
   public isi;
   public limit=0;
@@ -51,12 +54,11 @@ export class DiskusiPage {
    }
 
 
-  baca(idDis){
-    console.log("diskusi!!!");
-    this.navCtrl.push(DiskusiBacaPage, idDis);
+  baca(idDiskusi){
+    this.navCtrl.push(ArtikelBacaPage, idDiskusi);
   }
 
-  kirim() {
+  /*kirim() {
     let send = JSON.stringify({value : this.isi});
 
     this.http.post('http://cybex.agri.web.id/api/test.php', send).subscribe(res => {
@@ -67,7 +69,7 @@ export class DiskusiPage {
         this.response = '';
       }
     })
-  }
+  }*/
     
  presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({

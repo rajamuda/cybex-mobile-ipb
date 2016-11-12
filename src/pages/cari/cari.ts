@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
+import { ArtikelBacaPage } from '../artikel-baca/artikel-baca';
 import { TulisArtikelPage } from '../tulis-artikel/tulis-artikel';
 import { TulisDiskusiPage } from '../tulis-diskusi/tulis-diskusi';
 import '../../providers/user-data';
@@ -18,8 +19,9 @@ import '../../providers/user-data';
   templateUrl: 'cari.html'
 })
 export class CariPage {
-	private searchQuery = "";
-  private posts;
+	public searchQuery = "";
+  public posts;
+  public limit = 0;
 
   constructor(public navCtrl: NavController, public actionSheetCtrl: ActionSheetController, public http: Http) {}
 
@@ -37,6 +39,25 @@ export class CariPage {
 
  getItems(searchbar){
  	 this.initializeItems();
+ }
+
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      this.limit = this.limit+5;
+
+      this.http.get('http://cybex.agri.web.id/api/all_artikel.php?limit='+this.limit).subscribe(res => {
+        this.posts = this.posts.concat(res.json());
+      });
+
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 500);
+  }
+
+ baca(idArtikel){
+    this.navCtrl.push(ArtikelBacaPage, idArtikel);
  }
 
   presentActionSheet() {

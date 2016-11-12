@@ -9,7 +9,6 @@
         <ion-icon name="notifications"></ion-icon>
       </button>
     </ion-buttons>
-
   </ion-navbar>
 </ion-header>
 
@@ -17,51 +16,24 @@
 <ion-content padding>
   <ion-list>
     <div *ngFor="let dis of diskusi">
-    <ion-card (click)="baca(dis.id_artikel)">
-      <ion-card-header>
-        <b>{{dis.judul_artikel}}</b>
-        <p class="info">Oleh: {{dis.nama_user_input}} <span style="color:#ddd">| {{dis.tanggal}}</span></p><hr>
-      </ion-card-header>
-      <ion-card-content>
-        <p>{{dis.isi_artikel}}</p>
-      </ion-card-content>
-    </ion-card>
+      <ion-card (click)="baca(dis.id_artikel)">
+        <ion-card-header>
+          <b>{{dis.judul_artikel}}</b>
+          <p class="info">Oleh: {{dis.nama_user_input}} <span style="color:#ddd">| {{dis.tanggal}}</span></p><hr>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text" [innerHTML]="dis.isi_artikel"></p>
+        </ion-card-content>
+      </ion-card>
     </div>  
   </ion-list>
-    <!-- <ion-infinite-scroll (onInfinite)="onScrollDown()">
-    </ion-infinite-scroll> -->
-   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-   </ion-infinite-scroll>
-
-<!--
-  <ion-list>
-
-
-    <ion-item>
-      <ion-label>Value</ion-label>
-      <ion-input type="text" [(ngModel)]="isi"></ion-input>
-    </ion-item>
-
-  </ion-list>
-
-  <div padding>
-    <button ion-button (click)="kirim()">Kirim</button>
-  </div>
--->
-
-  {{response}}
+  </ion-infinite-scroll>
 
   <ion-fab right bottom>
     <button ion-fab color="primary" (click)="presentActionSheet()"><ion-icon name="add"></ion-icon></button>
-<!--
-    <ion-fab-list side="top">
-      Facebook <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
-    </ion-fab-list>
--->
   </ion-fab>
 
 </ion-content>
