@@ -35,14 +35,14 @@ export class TulisArtikelPage {
     });
   }
 
-  dariGaleri() {
-    let options = '';
-    this.ImagePicker.getPictures(options).then((results) => {
-      for (var i = 0; i < results.length; i++) {
-          console.log('Image URI: ' + results[i]);
-      }
-    }, (err) => { });
-  }
+  // dariGaleri() {
+  //   let options = '';
+  //   this.imagePicker.getPicture(options).then((results) => {
+  //     for (var i = 0; i < results.length; i++) {
+  //         console.log('Image URI: ' + results[i]);
+  //     }
+  //   }, (err) => { });
+  // }
 
   kirim() {
   	console.log('Kirim Clicked')
