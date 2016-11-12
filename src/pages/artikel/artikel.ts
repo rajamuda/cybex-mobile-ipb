@@ -20,6 +20,7 @@ import { TulisDiskusiPage } from '../tulis-diskusi/tulis-diskusi';
 export class ArtikelPage {
 
 	public posts;
+  public limit = 0;
 
   constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
 
@@ -27,11 +28,26 @@ export class ArtikelPage {
 
   ionViewDidLoad() {
     console.log('Hello ArtikelPage Page');
-    this.http.get('http://cybex.agri.web.id/api/all_artikel.php').subscribe(res => {
+    this.http.get('http://cybex.agri.web.id/api/all_artikel.php?limit='+this.limit).subscribe(res => {
       this.posts = res.json();
     });
   
   }
+
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      this.limit = this.limit+5;
+
+      this.http.get('http://cybex.agri.web.id/api/all_artikel.php?limit='+this.limit).subscribe(res => {
+        this.posts = this.posts.concat(res.json());
+      });
+
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 500);
+   }
 
   baca(idArtikel){
     this.navCtrl.push(ArtikelBacaPage, idArtikel);

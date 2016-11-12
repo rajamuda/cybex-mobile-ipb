@@ -15,18 +15,24 @@
 
 
 <ion-content padding>
-
-  <div *ngFor="let dis of diskusi">
+  <ion-list>
+    <div *ngFor="let dis of diskusi">
     <ion-card (click)="baca(dis.id_artikel)">
       <ion-card-header>
         <b>{{dis.judul_artikel}}</b>
+        <p class="info">Oleh: {{dis.nama_user_input}} <span style="color:#ddd">| {{dis.tanggal}}</span></p><hr>
       </ion-card-header>
       <ion-card-content>
-        <div style="color: #ddd">Oleh: {{dis.nama_user_input}}</div>
-        <div [innerHTML]="dis.isi_artikel"></div>
+        <p>{{dis.isi_artikel}}</p>
       </ion-card-content>
     </ion-card>
-  </div>
+    </div>  
+  </ion-list>
+    <!-- <ion-infinite-scroll (onInfinite)="onScrollDown()">
+    </ion-infinite-scroll> -->
+   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+     <ion-infinite-scroll-content></ion-infinite-scroll-content>
+   </ion-infinite-scroll>
 
 <!--
   <ion-list>

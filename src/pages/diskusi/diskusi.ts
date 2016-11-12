@@ -18,19 +18,38 @@ export class DiskusiPage {
   public test;
   public diskusi;
   public isi;
+  public limit=0;
 
   public response;
+  public items;
 
   constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
 
   }
+  
 
   ionViewDidLoad() {
     console.log('Hello DiskusiPage Page');
-    this.http.get('http://cybex.agri.web.id/api/all_diskusi.php').subscribe(res => {
+    this.http.get('http://cybex.agri.web.id/api/all_diskusi.php?limit='+this.limit).subscribe(res => {
       this.diskusi = res.json();
     });
   }
+
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      this.limit = this.limit+5;
+
+      this.http.get('http://cybex.agri.web.id/api/all_diskusi.php?limit='+this.limit).subscribe(res => {
+        this.diskusi = this.diskusi.concat(res.json());
+      });
+
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 2000);
+   }
+
 
   baca(idDis){
     console.log("diskusi!!!");

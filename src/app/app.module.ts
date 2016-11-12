@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 
+
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
@@ -43,6 +45,7 @@ import { TulisDiskusiPage } from '../pages/tulis-diskusi/tulis-diskusi';
     TulisDiskusiPage
   ],
   imports: [
+    InfiniteScrollModule,
     IonicModule.forRoot(ConferenceApp, {
       tabsPlacement: 'top',
       tabsHideOnSubPages: "true"

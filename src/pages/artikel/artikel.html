@@ -15,17 +15,23 @@
 
 
 <ion-content padding>
-
+  <ion-list>
   <div *ngFor="let post of posts">
     <ion-card (click)="baca(post.id_artikel)">
       <ion-card-header>
-        <b>{{post.judul_artikel}}</b><hr style="padding: 0;margin:0">
+        <b>{{post.judul_artikel}}</b>
+        <p class="info">Oleh: {{post.nama_user_input}} <span style="color:#ddd">| {{post.tanggal}}</span></p><hr>
       </ion-card-header>
       <ion-card-content>
-        {{post.nama_user_input}} | <span style="color:#ddd">{{post.tanggal}}</span>
+        <p>{{post.isi_artikel}}</p>
       </ion-card-content>
     </ion-card>
   </div>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+     <ion-infinite-scroll-content></ion-infinite-scroll-content>
+   </ion-infinite-scroll>
 
   <ion-fab right bottom>
     <button ion-fab color="primary" (click)="presentActionSheet()"><ion-icon name="add"></ion-icon></button>
