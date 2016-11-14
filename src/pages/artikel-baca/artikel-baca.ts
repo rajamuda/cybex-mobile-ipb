@@ -18,6 +18,7 @@ export class ArtikelBacaPage {
   public id: any;
   public posts: any;
   public comments: any;
+  public nocom = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   	this.id = navParams.data;
@@ -28,6 +29,10 @@ export class ArtikelBacaPage {
 
     http.get('http://cybex.agri.web.id/api/comment.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
         this.comments = data;
+        if(data==''){
+           this.nocom=true;
+           console.log(this.nocom);
+        }
     }); 
 
   }

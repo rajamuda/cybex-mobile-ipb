@@ -31,7 +31,7 @@ export class CariPage {
 
   initializeItems() {
 
-    this.http.get('http://cybex.agri.web.id/api/search.php?search='+this.searchQuery).map(res => res.json()).subscribe(data => {
+    this.http.get('http://cybex.agri.web.id/api/search.php?search='+this.searchQuery+'&limit='+this.limit).map(res => res.json()).subscribe(data => {
         this.posts = data;
     });
 
@@ -47,7 +47,7 @@ export class CariPage {
     setTimeout(() => {
       this.limit = this.limit+5;
 
-      this.http.get('http://cybex.agri.web.id/api/all_artikel.php?limit='+this.limit).subscribe(res => {
+      this.http.get('http://cybex.agri.web.id/api/search.php?search='+this.searchQuery+'&limit='+this.limit).subscribe(res => {
         this.posts = this.posts.concat(res.json());
       });
 

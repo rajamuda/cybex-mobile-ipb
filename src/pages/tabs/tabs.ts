@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 
 import { NavParams } from 'ionic-angular';
 
@@ -16,8 +16,16 @@ export class TabsPage {
   tab2Root: any = ArtikelPage;
   tab3Root: any = CariPage;
   mySelectedIndex: number;
+  public ionScroll;
 
-  constructor(navParams: NavParams) {
+  constructor(navParams: NavParams, public myElement: ElementRef) {
     this.mySelectedIndex = navParams.data.tabIndex || 0;
   }
+
+
+  ssss(){
+  	console.log("jalaaaaan!");
+  	
+  }
+
 }
