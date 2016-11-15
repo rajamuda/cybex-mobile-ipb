@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Http } from '@angular/http';
 // import { Camera } from 'ionic-native';
 // import { ImagePicker } from 'ionic-native';
 
@@ -15,7 +16,11 @@ import { NavController } from 'ionic-angular';
 })
 export class TulisArtikelPage {
 
-  constructor(public navCtrl: NavController) {
+  isi_artikel: string;
+  judul_artikel: string;
+  input: string;
+
+  constructor(public navCtrl: NavController, public http: Http) {
     
   }
 
@@ -45,7 +50,11 @@ export class TulisArtikelPage {
   // }
 
   kirim() {
-  	console.log('Kirim Clicked')
+      this.input = JSON.stringify({isi_artikel: this.isi_artikel, judul_artikel: this.judul_artikel});
+      this.http.post("http://cybex.agri.web.id/api/tulis_artikel.php", this.input)
+          .subscribe(data => {
+                  this.navCtrl.pop();
+      });
   }
 
 }
