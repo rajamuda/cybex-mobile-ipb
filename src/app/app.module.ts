@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 
-
-import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { Camera } from 'ionic-native';
 import { ImagePicker } from 'ionic-native';
 import { IonicApp, IonicModule } from 'ionic-angular';
@@ -47,7 +45,6 @@ import { TulisKomentarPage } from '../pages/tulis-komentar/tulis-komentar';
     TulisKomentarPage
   ],
   imports: [
-    InfiniteScrollModule,
     IonicModule.forRoot(ConferenceApp, {
       tabsPlacement: 'top',
       tabsHideOnSubPages: "true"
