@@ -16,9 +16,10 @@ import { Http } from '@angular/http';
 })
 export class TulisArtikelPage {
 
-  isi_artikel: string;
-  judul_artikel: string;
-  input: string;
+  public isi_artikel: string;
+  public judul_artikel: string;
+  public input: string;
+  public koms;
 
   constructor(public navCtrl: NavController, public http: Http) {
     
@@ -26,6 +27,9 @@ export class TulisArtikelPage {
 
   ionViewDidLoad() {
     console.log('Hello TulisArtikelPage Page');
+    this.http.get('http://cybex.agri.web.id/api/all_komoditas.php').subscribe(res => {
+      this.koms = res.json();
+    });
   }
 
   dariKamera() {

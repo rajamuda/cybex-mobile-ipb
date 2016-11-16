@@ -23,15 +23,14 @@
 <ion-content padding>
   <div>
     <ion-item>
-      <ion-input [(ngModel)]="judul_artikel" type="text" placeholder="Judul Artikel"></ion-input>
+      <ion-input [(ngModel)]="judul_artikel" type="text" placeholder="Judul Artikel" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Pilih Topik</ion-label>
-      <ion-select [(ngModel)]="Topik" okText="OK" cancelText="Batal">
-        <ion-option value="1">Topik 1</ion-option>
-        <ion-option value="2">Topik 2</ion-option>
-        <ion-option value="3">Topik 3</ion-option>
-        <ion-option value="4">Topik 4</ion-option>
+      <ion-label>Pilih Komoditas</ion-label>
+      <ion-select [(ngModel)]="id_komoditas" okText="OK" cancelText="Batal" required>
+        <div *ngFor="let kom of koms">
+          <ion-option value="{{kom.id_komoditas}}">{{kom.nama_komoditas}}</ion-option>
+        </div>
       </ion-select>
     </ion-item>
     <ion-item>
