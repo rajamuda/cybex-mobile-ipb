@@ -27,6 +27,16 @@ export class ArtikelPage {
 
   }
 
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.ionViewDidLoad();
+      refresher.complete();
+    }, 1500);
+  }
+
   ionViewDidLoad() {
     console.log('Hello ArtikelPage Page');
     this.http.get('http://cybex.agri.web.id/api/all_artikel.php?limit='+this.limit).subscribe(res => {

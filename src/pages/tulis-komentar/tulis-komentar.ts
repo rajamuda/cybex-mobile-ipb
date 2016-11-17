@@ -15,16 +15,26 @@ import 'rxjs/add/operator/map';
   templateUrl: 'tulis-komentar.html'
 })
 export class TulisKomentarPage {
-  public id;
+  public id_artikel: any;
+  public isi_komentar: string;
+  public id_user_input = 12;
+  public input: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
-  	this.id = navParams;
+  	this.id_artikel = navParams.data;
   }
 
   ionViewDidLoad() {
     console.log('Hello TulisKomentarPage Page');
   }
 
-
+   kirim() {
+      this.input = JSON.stringify({id_artikel: this.id_artikel, isi_komentar: this.isi_komentar, id_user_input: this.id_user_input});
+      console.log(this.input);
+      this.http.post("http://cybex.agri.web.id/api/tulis_komentar.php", this.input)
+          .subscribe(data => {
+                  this.navCtrl.pop();
+      });
+  }
 
 }

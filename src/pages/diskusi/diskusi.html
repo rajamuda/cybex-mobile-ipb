@@ -14,6 +14,14 @@
 
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Tarik untuk memuat ulang"
+      refreshingSpinner="circles"
+      refreshingText="Memuat...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <div *ngFor="let dis of diskusi">
       <ion-card (click)="baca(dis.id_artikel)">
