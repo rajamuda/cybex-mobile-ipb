@@ -23,18 +23,27 @@ export class ArtikelBacaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   	this.id = navParams.data;
 
-  	http.get('http://cybex.agri.web.id/api/artikel_b.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
-        this.posts = data;
-    }); 
+    this.getData();
+  }
 
-    http.get('http://cybex.agri.web.id/api/comment.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
+  getData() {
+    this.http.get('http://cybex.agri.web.id/api/artikel_b.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
+        this.posts = data;
+    });
+
+    this.http.get('http://cybex.agri.web.id/api/comment.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
         this.comments = data;
         if(data==''){
            this.nocom=true;
-           console.log(this.nocom);
         }
-    }); 
+    });
+  }
 
+  doRefresh(refresher) {
+    setTimeout(() => {
+      this.getData();
+      refresher.complete();
+    }, 1500);
   }
 
   ionViewDidLoad() {

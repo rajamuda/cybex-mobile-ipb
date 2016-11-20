@@ -24,7 +24,7 @@ export class ArtikelPage {
   public limit = 0;
 
   constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
-
+    this.getData();
   }
 
   doRefresh(refresher) {
@@ -37,12 +37,14 @@ export class ArtikelPage {
     }, 1500);
   }
 
-  ionViewDidLoad() {
-    console.log('Hello ArtikelPage Page');
+  getData() {
     this.http.get('http://cybex.agri.web.id/api/all_artikel.php?limit='+this.limit).subscribe(res => {
       this.posts = res.json();
     });
-  
+  }
+
+  ionViewDidLoad() {
+    this.getData();
   }
 
   doInfinite(infiniteScroll) {
