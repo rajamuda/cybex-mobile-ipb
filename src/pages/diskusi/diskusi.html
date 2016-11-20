@@ -17,26 +17,32 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
-      pullingText="Tarik untuk memuat ulang"
+      pullingText="Memuat ulang..."
       refreshingSpinner="circles"
-      refreshingText="Memuat...">
+      refreshingText="Memuat data...">
     </ion-refresher-content>
   </ion-refresher>
+  <div text-center *ngIf="!diskusi">
+    <ion-spinner></ion-spinner>
+    <p>
+      Memuat data...
+    </p>
+  </div>
   <ion-list>
     <div *ngFor="let dis of diskusi">
       <ion-card (click)="baca(dis.id_artikel)">
         <ion-card-header>
-          <b>{{dis.judul_artikel}}</b>
-          <p class="info">Oleh: {{dis.nama_user_input}} <span style="color:#ddd">| {{dis.tanggal}}</span></p><hr>
+          <b class="judul">{{dis.judul_artikel}}</b>
+          <p class="info">Oleh: <b>{{dis.nama_user_input}}</b> <span style="color:#7f8c8d">| {{dis.tanggal}}</span></p><hr>
         </ion-card-header>
         <ion-card-content>
-          <p class="text" [innerHTML]="dis.isi_artikel"></p>
+          <p class="text" [innerHTML]="dis.isi_artikel"></p><br />
           <ion-badge item-right secondary> <ion-icon name="eye"></ion-icon>  Lihat : {{dis.total_baca}}</ion-badge>
           <ion-badge item-right instagram> <ion-icon name="chatbubbles"></ion-icon>  Komentar : {{dis.total_komentar}}</ion-badge>
-          <ion-badge item-right primary><ion-icon name="snow"></ion-icon> Padi </ion-badge>
+          <!-- <ion-badge item-right primary><ion-icon name="snow"></ion-icon> Padi </ion-badge> -->
         </ion-card-content>
       </ion-card>
-    </div>  
+    </div>
   </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

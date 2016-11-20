@@ -27,29 +27,31 @@ export class DiskusiPage {
   public items;
 
   constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
+    this.getData();
 
   }
-  
+
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
+    this.limit = 0;
 
     setTimeout(() => {
-      console.log('Async operation has ended');
-      this.ionViewDidLoad();
+      this.getData();
       refresher.complete();
     }, 1500);
   }
-  
-  ionViewDidLoad() {
-    console.log('Hello DiskusiPage Page');
+
+  getData() {
     this.http.get('http://cybex.agri.web.id/api/all_diskusi.php?limit='+this.limit).subscribe(res => {
       this.diskusi = res.json();
+      console.log('dapet data');
     });
   }
 
-  doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
+  ionViewDidLoad() {
+    this.getData();
+  }
 
+  doInfinite(infiniteScroll) {
     setTimeout(() => {
       this.limit = this.limit+5;
 
@@ -57,7 +59,6 @@ export class DiskusiPage {
         this.diskusi = this.diskusi.concat(res.json());
       });
 
-      console.log('Async operation has ended');
       infiniteScroll.complete();
     }, 2000);
    }
@@ -67,19 +68,6 @@ export class DiskusiPage {
     this.navCtrl.push(ArtikelBacaPage, idDiskusi);
   }
 
-  /*kirim() {
-    let send = JSON.stringify({value : this.isi});
-
-    this.http.post('http://cybex.agri.web.id/api/test.php', send).subscribe(res => {
-      this.response = res;
-
-      if (res) {
-        this.isi = '';
-        this.response = '';
-      }
-    })
-  }*/
-    
  presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Pilihan',

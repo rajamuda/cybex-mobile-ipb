@@ -22,19 +22,25 @@
       refreshingText="Memuat...">
     </ion-refresher-content>
   </ion-refresher>
+  <div text-center *ngIf="!posts">
+    <ion-spinner></ion-spinner>
+    <p>
+      Memuat data...
+    </p>
+  </div>
   <ion-list>
     <div *ngFor="let post of posts">
 
       <ion-card (click)="baca(post.id_artikel)">
         <ion-card-header>
-          <b>{{post.judul_artikel}}</b>
-          <p class="info">Oleh: {{post.nama_user_input}} <span style="color:#ddd">| {{post.tanggal}}</span></p><hr>
+          <b class="judul">{{post.judul_artikel}}</b>
+          <p class="info">Oleh: {{post.nama_user_input}} <span style="color:#7f8c8d">| {{post.tanggal}}</span></p><hr>
         </ion-card-header>
         <ion-card-content>
-          <p class="text" [innerHTML]="post.isi_artikel"></p>
+          <p class="text" [innerHTML]="post.isi_artikel"></p><br />
           <ion-badge item-right secondary> <ion-icon name="eye"></ion-icon>  Lihat : {{post.total_baca}}</ion-badge>
           <ion-badge item-right instagram> <ion-icon name="chatbubbles"></ion-icon>  Komentar : {{post.total_komentar}}</ion-badge>
-          <ion-badge item-right primary><ion-icon name="snow"></ion-icon> Padi </ion-badge>
+          <!-- <ion-badge item-right primary><ion-icon name="snow"></ion-icon> Padi </ion-badge> -->
         </ion-card-content>
       </ion-card>
     </div>

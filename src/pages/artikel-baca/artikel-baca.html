@@ -1,9 +1,3 @@
-<!--
-  Generated template for the ArtikelBaca page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -12,11 +6,21 @@
 
 </ion-header>
 
-
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Memuat ulang..."
+      refreshingSpinner="circles"
+      refreshingText="Memuat ulang...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div text-center *ngIf="!posts">
+    <ion-spinner></ion-spinner>
+  </div>
 	<div padding *ngFor="let post of posts">
     <h3 primary>
-      <b>{{post.judul_artikel}}</b>
+      <b class="judul">{{post.judul_artikel}}</b>
     </h3>
     <p class="info">
       Oleh : {{post.nama_user_input}}. Pada {{post.tanggal}}.
@@ -28,14 +32,15 @@
     <ion-badge item-right primary><ion-icon name="snow"></ion-icon> Padi </ion-badge>
   </div>
   <hr>
-  
-  <p class="judul" padding-left instagram>
+
+  <p class="judul" padding instagram>
       Komentar :
   </p>
+  <div text-center *ngIf="!comments">
+    <ion-spinner></ion-spinner>
+  </div>
   <div *ngIf="nocom" padding>
-    
-      <p style="text-align: center"><i>Belum ada komentar</i></p>
-
+    <p style="text-align: center"><i>Belum ada komentar</i></p>
   </div>
   <div *ngFor="let com of comments">
     <ion-card>
