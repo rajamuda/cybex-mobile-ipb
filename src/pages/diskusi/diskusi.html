@@ -14,6 +14,10 @@
 
 
 <ion-content padding>
+
+  <!-- <div id="my-div">
+  <iframe src="http://cybex.ipb.ac.id/index.php/user/daftar" id="my-iframe"></iframe>
+  </div> -->
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
@@ -30,7 +34,7 @@
   </div>
   <ion-list>
     <div *ngFor="let dis of diskusi">
-      <ion-card (click)="baca(dis.id_artikel)">
+      <ion-card (click)="baca(dis.id_artikel)" class="head">
         <ion-card-header>
           <b class="judul">{{dis.judul_artikel}}</b>
           <p class="info">Oleh: <b>{{dis.nama_user_input}}</b> <span style="color:#7f8c8d">| {{dis.tanggal}}</span></p><hr>

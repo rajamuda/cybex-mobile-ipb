@@ -25,7 +25,6 @@ import { TulisArtikelPage } from '../pages/tulis-artikel/tulis-artikel';
 import { TulisDiskusiPage } from '../pages/tulis-diskusi/tulis-diskusi';
 import { TulisKomentarPage } from '../pages/tulis-komentar/tulis-komentar';
 
-
 @NgModule({
   declarations: [
     ConferenceApp,

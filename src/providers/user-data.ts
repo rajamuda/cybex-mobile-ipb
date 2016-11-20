@@ -26,6 +26,14 @@ export class UserData {
     }
   }
 
+  setToken(token) {
+    this.storage.set('token', token);
+  }
+
+  setId(id) {
+    this.storage.set('id', id);
+  }
+
   login(username) {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.setUsername(username);

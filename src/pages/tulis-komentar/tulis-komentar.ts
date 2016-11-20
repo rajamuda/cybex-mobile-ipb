@@ -33,7 +33,7 @@ export class TulisKomentarPage {
       console.log(this.input);
       this.http.post("http://cybex.agri.web.id/api/tulis_komentar.php", this.input)
           .subscribe(data => {
-                  this.navCtrl.pop();
+            this.navCtrl.pop();
       });
   }
 
