@@ -24,6 +24,7 @@ import { ArtikelBacaPage } from '../pages/artikel-baca/artikel-baca';
 import { TulisArtikelPage } from '../pages/tulis-artikel/tulis-artikel';
 import { TulisDiskusiPage } from '../pages/tulis-diskusi/tulis-diskusi';
 import { TulisKomentarPage } from '../pages/tulis-komentar/tulis-komentar';
+import { NotifikasiPage } from '../pages/notifikasi/notifikasi'
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { TulisKomentarPage } from '../pages/tulis-komentar/tulis-komentar';
     ArtikelBacaPage,
     TulisArtikelPage,
     TulisDiskusiPage,
-    TulisKomentarPage
+    TulisKomentarPage,
+    NotifikasiPage
   ],
   imports: [
     IonicModule.forRoot(ConferenceApp, {
@@ -66,7 +68,8 @@ import { TulisKomentarPage } from '../pages/tulis-komentar/tulis-komentar';
     ArtikelBacaPage,
     TulisArtikelPage,
     TulisDiskusiPage,
-    TulisKomentarPage
+    TulisKomentarPage,
+    NotifikasiPage
   ],
   providers: [UserData, Storage]
 })
