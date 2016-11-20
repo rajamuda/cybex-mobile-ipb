@@ -24,6 +24,7 @@
   </ion-refresher>
   <ion-list>
     <div *ngFor="let post of posts">
+
       <ion-card (click)="baca(post.id_artikel)">
         <ion-card-header>
           <b>{{post.judul_artikel}}</b>
