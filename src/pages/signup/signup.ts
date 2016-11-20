@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
-import { TabsPage } from '../tabs/tabs';
+// import { TabsPage } from '../tabs/tabs';
 import { UserData } from '../../providers/user-data';
 
 

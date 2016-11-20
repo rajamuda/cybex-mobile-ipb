@@ -46,12 +46,12 @@ export class ArtikelBacaPage {
     }, 1500);
   }
 
-  ionViewDidLoad() {
-    console.log('Hello ArtikelBacaPage Page');
+  ionViewWillEnter() {
+    this.getData();
   }
 
   tulisKomentar() {
-    this.navCtrl.push(TulisKomentarPage, this.id)
+    this.navCtrl.push(TulisKomentarPage, this.id);
   }
 
 }

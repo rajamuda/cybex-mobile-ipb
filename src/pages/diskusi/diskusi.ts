@@ -40,6 +40,10 @@ export class DiskusiPage {
     }, 1500);
   }
 
+  resolved(captchaResponse: string) {
+    console.log(`Resolved captcha with response ${captchaResponse}:`);
+  }
+
   getData() {
     this.http.get('http://cybex.agri.web.id/api/all_diskusi.php?limit='+this.limit).subscribe(res => {
       this.diskusi = res.json();
