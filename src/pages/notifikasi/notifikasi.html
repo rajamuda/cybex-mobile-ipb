@@ -31,13 +31,13 @@
   <ion-list>
     <div *ngFor="let not of nots">
 
-      <ion-card (click)="baca(not.id_artikel)">
+      <ion-card (click)="baca(not.id_artikel)" class="head">
         <ion-card-content>
           <p class="text">
 		    <b primary>{{not.nama_user}}</b> memberikan komentar pada {{not.nama_kategori}} anda:
 		  </p>
-		  <p grey class="text">
-		    <b>{{not.judul_artikel}}</b>
+		  <p>
+		  	<b>{{not.judul_artikel}}</b>
 		  </p>
 		  <p>
 		  	 pada tanggal {{not.tanggal_komentar}}

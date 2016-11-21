@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
+import { NotifikasiPage } from '../notifikasi/notifikasi';
 import { ArtikelBacaPage } from '../artikel-baca/artikel-baca';
 import { TulisArtikelPage } from '../tulis-artikel/tulis-artikel';
 import { TulisDiskusiPage } from '../tulis-diskusi/tulis-diskusi';
@@ -27,6 +28,14 @@ export class ArtikelPage {
     this.getData();
   }
 
+  ionViewDidLoad() {
+    this.getData();
+  }
+
+  notif() {
+    this.navCtrl.push(NotifikasiPage);
+  }
+
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
 
@@ -41,10 +50,6 @@ export class ArtikelPage {
     this.http.get('http://cybex.agri.web.id/api/all_artikel.php?limit='+this.limit).subscribe(res => {
       this.posts = res.json();
     });
-  }
-
-  ionViewDidLoad() {
-    this.getData();
   }
 
   doInfinite(infiniteScroll) {

@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
+import { NotifikasiPage } from '../notifikasi/notifikasi'
 import { ArtikelBacaPage } from '../artikel-baca/artikel-baca';
 import { TulisArtikelPage } from '../tulis-artikel/tulis-artikel';
 import { TulisDiskusiPage } from '../tulis-diskusi/tulis-diskusi';
@@ -28,7 +29,10 @@ export class DiskusiPage {
 
   constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
     this.getData();
+  }
 
+  notif() {
+    this.navCtrl.push(NotifikasiPage);
   }
 
   doRefresh(refresher) {

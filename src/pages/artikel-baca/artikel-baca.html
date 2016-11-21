@@ -43,7 +43,7 @@
   <div *ngFor="let com of comments">
     <ion-card>
       <ion-card-header class="midnight">
-        <b>{{com.nama_user_input}}</b> <span class="grey" style="font-size: 70%;"> pada {{com.tanggal_komentar | date: 'dd/MM/yyyy HH:mm'}}</span>
+        <b>{{com.nama_user}}</b> <span class="grey" style="font-size: 70%;"> pada {{com.tanggal_komentar | date: 'dd/MM/yyyy HH:mm'}}</span>
       </ion-card-header>
       <ion-card-content>
        <p [innerHTML]="com.isi_komentar"></p>
