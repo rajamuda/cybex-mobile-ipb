@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 import { NavParams } from 'ionic-angular';
 
@@ -25,7 +25,7 @@ export class TabsPage {
 
   ssss(){
   	console.log("jalaaaaan!");
-  	
+
   }
 
 }
