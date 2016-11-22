@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Camera } from 'ionic-native';
 import { ImagePicker } from 'ionic-native';
 import { IonicApp, IonicModule } from 'ionic-angular';
+import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 
 import { ConferenceApp } from './app.component';
@@ -24,7 +25,20 @@ import { ArtikelBacaPage } from '../pages/artikel-baca/artikel-baca';
 import { TulisArtikelPage } from '../pages/tulis-artikel/tulis-artikel';
 import { TulisDiskusiPage } from '../pages/tulis-diskusi/tulis-diskusi';
 import { TulisKomentarPage } from '../pages/tulis-komentar/tulis-komentar';
-import { NotifikasiPage } from '../pages/notifikasi/notifikasi'
+import { NotifikasiPage } from '../pages/notifikasi/notifikasi';
+
+import { AUTH_PROVIDERS, AuthHttp, AuthConfig } from 'angular2-jwt';
+
+let storage = new Storage();
+
+export function getAuthHttp(http) {
+  return new AuthHttp(new AuthConfig({
+    headerPrefix: "YOUR_HEADER_PREFIX",
+    noJwtError: true,
+    globalHeaders: [{'Accept': 'application/json'}],
+    tokenGetter: (() => storage.get('id_token')),
+  }), http);
+}
 
 @NgModule({
   declarations: [
@@ -70,6 +84,10 @@ import { NotifikasiPage } from '../pages/notifikasi/notifikasi'
     TulisKomentarPage,
     NotifikasiPage
   ],
-  providers: [UserData, Storage]
+  providers: [UserData, Storage, AUTH_PROVIDERS,     {
+      provide: AuthHttp,
+      useFactory: getAuthHttp,
+      deps: [Http]
+    },]
 })
 export class AppModule {}
