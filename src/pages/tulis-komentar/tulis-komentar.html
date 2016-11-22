@@ -15,6 +15,9 @@
 
 <ion-content padding>
   <div>
+    <div *ngIf="noInput" padding>
+        <p color="danger">Terjadi kesalahan: Mohon isikan field yang masih kosong!</p>
+    </div>
     <ion-item >
       <ion-textarea class="komentar" [(ngModel)]="isi_komentar" placeholder="Ketik Komentar Anda Disini" rows="20"></ion-textarea>
     </ion-item>

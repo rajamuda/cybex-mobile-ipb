@@ -36,8 +36,11 @@
   <div text-center *ngIf="!comments">
     <ion-spinner></ion-spinner>
   </div>
-  <div *ngIf="nocom" padding>
+  <!-- <div *ngIf="nocom" padding>
     <p style="text-align: center"><i>Belum ada komentar</i></p>
+  </div> -->
+  <div *ngIf="comments == '' ">
+       <p style="text-align: center"><i>Belum ada komentar</i></p>
   </div>
   <div *ngFor="let com of comments">
     <ion-card>

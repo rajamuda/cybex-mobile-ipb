@@ -9,6 +9,9 @@
 
 <ion-content padding>
   <div>
+    <div *ngIf="noInput" padding>
+        <p color="danger">Terjadi kesalahan: Mohon isikan field yang masih kosong!</p>
+    </div>
     <ion-item>
       <ion-input [(ngModel)]="judul_artikel" type="text" placeholder="Judul Artikel" required></ion-input>
     </ion-item>
