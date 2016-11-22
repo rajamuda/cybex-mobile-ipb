@@ -70,6 +70,7 @@ export class TulisArtikelPage {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64:
      let base64Image = 'data:image/jpeg;base64,' + imageData;
+     console.log(base64Image);
     }, (err) => {
      // Handle error
     });
@@ -98,14 +99,15 @@ export class TulisArtikelPage {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Pilihan',
       buttons: [
+        // {
+        //   text: 'Kamera',
+        //   role: 'tulisArtikel',
+        //   handler: () => {
+        //     console.log('Tulis Artikel clicked');
+        //     this.dariKamera();
+        //   }
+        // },
         {
-          text: 'Kamera',
-          role: 'tulisArtikel',
-          handler: () => {
-            console.log('Tulis Artikel clicked');
-            this.dariKamera();
-          }
-        },{
           text: 'Galeri',
           role: 'tulisDiskusi',
           handler: () => {
