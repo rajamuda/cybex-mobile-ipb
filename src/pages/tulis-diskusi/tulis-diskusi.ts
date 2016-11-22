@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 
 import { UserData } from '../../providers/user-data';
 import { LoginPage } from '../login/login';
+
+import { ImagePicker } from 'ionic-native';
 /*
   Generated class for the TulisDiskusi page.
 
@@ -58,7 +60,7 @@ export class TulisDiskusiPage {
   	console.log('getPicture Clicked');
   }
 
-  
+
   kirim() {
       this.input = JSON.stringify({isi_artikel: this.isi_diskusi, judul_artikel: this.judul_diskusi, id_kategori: this.id_kategori, id_komoditas: this.id_komoditas, id_user_input: this.id_user_input, id_topik: this.id_topik});
       console.log(this.input);
