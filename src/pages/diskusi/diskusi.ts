@@ -9,6 +9,8 @@ import { TulisArtikelPage } from '../tulis-artikel/tulis-artikel';
 import { TulisDiskusiPage } from '../tulis-diskusi/tulis-diskusi';
 import '../../providers/user-data';
 
+import { AuthHttp } from 'angular2-jwt';
+
 /*
   Generated class for the Diskusi page.
 
@@ -27,7 +29,7 @@ export class DiskusiPage {
   public response;
   public items;
 
-  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
+  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController, public authHttp: AuthHttp) {
     this.getData();
   }
 
@@ -57,6 +59,11 @@ export class DiskusiPage {
 
   ionViewDidLoad() {
     this.getData();
+
+    this.authHttp.get('http://cybex.agri.web.id/api/all_diskusi.php?limit='+this.limit).subscribe(res => {
+      this.diskusi = res.json();
+      console.log('dapet data nih bro'+this.diskusi);
+    });
   }
 
   doInfinite(infiniteScroll) {
