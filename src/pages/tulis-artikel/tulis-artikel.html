@@ -9,6 +9,9 @@
 
 <ion-content padding>
   <div>
+    <div *ngIf="noInput" padding>
+        <p color="danger">Terjadi kesalahan: Mohon isikan field yang masih kosong!</p>
+    </div>
     <ion-item>
       <ion-input [(ngModel)]="judul_artikel" type="text" placeholder="Judul Artikel" required></ion-input>
     </ion-item>
@@ -26,6 +29,7 @@
   </div>
   <br>
   <div text-center>
+    <ion-input type="text"></ion-input>
     <button ion-button outline (click)="ambilGambar()"><ion-icon name="camera"></ion-icon></button>
     <button ion-button (click)="kirim()">Kirim Artikel</button>
   </div>

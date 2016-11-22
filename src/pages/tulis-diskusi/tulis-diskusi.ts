@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 
 import { UserData } from '../../providers/user-data';
 import { LoginPage } from '../login/login';
+
+import { ImagePicker } from 'ionic-native';
 /*
   Generated class for the TulisDiskusi page.
 
@@ -23,6 +25,7 @@ export class TulisDiskusiPage {
   public id_komoditas = 1;
   public id_user_input = 12;
   public id_topik = 1;
+  public noInput = false;
 
   constructor(public navCtrl: NavController, public app: App, public http: Http, public alertCtrl: AlertController, public userData: UserData) {}
 
@@ -58,13 +61,17 @@ export class TulisDiskusiPage {
   	console.log('getPicture Clicked');
   }
 
-  
+
   kirim() {
-      this.input = JSON.stringify({isi_artikel: this.isi_diskusi, judul_artikel: this.judul_diskusi, id_kategori: this.id_kategori, id_komoditas: this.id_komoditas, id_user_input: this.id_user_input, id_topik: this.id_topik});
-      console.log(this.input);
-      this.http.post("http://cybex.agri.web.id/api/tulis_artikel.php", this.input)
-          .subscribe(data => {
-                  this.navCtrl.pop();
-      });
+      if(this.isi_diskusi == undefined || this.judul_diskusi == undefined){
+        this.noInput = true;
+      }else{
+        this.input = JSON.stringify({isi_artikel: this.isi_diskusi, judul_artikel: this.judul_diskusi, id_kategori: this.id_kategori, id_komoditas: this.id_komoditas, id_user_input: this.id_user_input, id_topik: this.id_topik});
+        console.log(this.input);
+        this.http.post("http://cybex.agri.web.id/api/tulis_artikel.php", this.input)
+            .subscribe(data => {
+                    this.navCtrl.pop();
+        });
+      }
   }
 }

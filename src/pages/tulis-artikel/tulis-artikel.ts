@@ -27,6 +27,7 @@ export class TulisArtikelPage {
   public id_komoditas: any;
   public id_user_input = 12;
   public koms;
+  public noInput = false;
 
   constructor(public navCtrl: NavController, public app: App, public http: Http, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController, public userData: UserData) {
 
@@ -70,6 +71,7 @@ export class TulisArtikelPage {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64:
      let base64Image = 'data:image/jpeg;base64,' + imageData;
+     console.log(base64Image);
     }, (err) => {
      // Handle error
     });
@@ -85,6 +87,9 @@ export class TulisArtikelPage {
   }
 
   kirim() {
+      if(this.isi_artikel == undefined || this.judul_artikel == undefined || this.id_komoditas == undefined){
+        this.noInput = true;
+      }else{
       this.input = JSON.stringify({isi_artikel: this.isi_artikel, judul_artikel: this.judul_artikel,
         id_kategori: this.id_kategori, id_topik: this.id_topik, id_komoditas: this.id_komoditas, id_user_input: this.id_user_input});
       console.log(this.input);
@@ -92,20 +97,22 @@ export class TulisArtikelPage {
           .subscribe(data => {
                   this.navCtrl.pop();
       });
+      }
   }
 
   ambilGambar() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Pilihan',
       buttons: [
+        // {
+        //   text: 'Kamera',
+        //   role: 'tulisArtikel',
+        //   handler: () => {
+        //     console.log('Tulis Artikel clicked');
+        //     this.dariKamera();
+        //   }
+        // },
         {
-          text: 'Kamera',
-          role: 'tulisArtikel',
-          handler: () => {
-            console.log('Tulis Artikel clicked');
-            this.dariKamera();
-          }
-        },{
           text: 'Galeri',
           role: 'tulisDiskusi',
           handler: () => {
