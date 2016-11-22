@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, App, ActionSheetController, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Camera } from 'ionic-native';
 import { ImagePicker } from 'ionic-native';
 
-import { ActionSheetController } from 'ionic-angular';
+import { UserData } from '../../providers/user-data';
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the TulisArtikel page.
@@ -27,8 +28,8 @@ export class TulisArtikelPage {
   public id_user_input = 12;
   public koms;
 
-  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
-    
+  constructor(public navCtrl: NavController, public app: App, public http: Http, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController, public userData: UserData) {
+
   }
 
   ionViewDidLoad() {
@@ -36,6 +37,30 @@ export class TulisArtikelPage {
     this.http.get('http://cybex.agri.web.id/api/all_komoditas.php').subscribe(res => {
       this.koms = res.json();
     });
+
+    if(this.userData.loginState){
+      console.log("sudah login");
+    }else{
+      console.log("tidak login");
+      let alert = this.alertCtrl.create({
+        title: 'Anda belum login',
+        subTitle: 'Silakan lakukan login terlebih dahulu untuk dapat menulis artikel',
+        buttons: [{
+            text: 'Login',
+            handler: () => {
+              this.app.getRootNav().setRoot(LoginPage);
+          }},{
+            text: 'Batal',
+            role: 'cancel',
+            handler: () =>{
+              this.navCtrl.pop();
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+
   }
 
   dariKamera() {

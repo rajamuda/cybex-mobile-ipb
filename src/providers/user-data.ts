@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 export class UserData {
   _favorites = [];
   HAS_LOGGED_IN = 'hasLoggedIn';
+  loginState = false;
 
   constructor(public events: Events, public storage: Storage) {}
 
@@ -38,6 +39,7 @@ export class UserData {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.setUsername(username);
     this.events.publish('user:login');
+    this.loginState = true;
   }
 
   signup(username) {
@@ -50,6 +52,7 @@ export class UserData {
     this.storage.remove(this.HAS_LOGGED_IN);
     this.storage.remove('username');
     this.events.publish('user:logout');
+    this.loginState = false;
   }
 
   setUsername(username) {

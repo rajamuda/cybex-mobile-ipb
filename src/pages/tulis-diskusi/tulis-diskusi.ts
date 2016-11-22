@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, App, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
-
+import { UserData } from '../../providers/user-data';
+import { LoginPage } from '../login/login';
 /*
   Generated class for the TulisDiskusi page.
 
@@ -23,10 +24,34 @@ export class TulisDiskusiPage {
   public id_user_input = 12;
   public id_topik = 1;
 
-  constructor(public navCtrl: NavController, public http: Http) {}
+  constructor(public navCtrl: NavController, public app: App, public http: Http, public alertCtrl: AlertController, public userData: UserData) {}
 
   ionViewDidLoad() {
     console.log('Hello TulisDiskusiPage Page');
+
+    if(this.userData.loginState){
+      console.log("sudah login");
+    }else{
+      console.log("tidak login");
+      let alert = this.alertCtrl.create({
+        title: 'Anda belum login',
+        subTitle: 'Silakan lakukan login terlebih dahulu untuk dapat menulis artikel',
+        buttons: [{
+            text: 'Login',
+            handler: () => {
+              this.app.getRootNav().setRoot(LoginPage);
+          }},{
+            text: 'Batal',
+            role: 'cancel',
+            handler: () =>{
+              this.navCtrl.pop();
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+
   }
 
   getPicture() {
