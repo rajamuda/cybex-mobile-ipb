@@ -37,10 +37,8 @@ export class ArtikelPage {
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
 
     setTimeout(() => {
-      console.log('Async operation has ended');
       this.ionViewDidLoad();
       refresher.complete();
     }, 1500);
@@ -53,7 +51,6 @@ export class ArtikelPage {
   }
 
   doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
 
     setTimeout(() => {
       this.limit = this.limit+5;
@@ -62,7 +59,6 @@ export class ArtikelPage {
         this.posts = this.posts.concat(res.json());
       });
 
-      console.log('Async operation has ended');
       infiniteScroll.complete();
     }, 500);
    }

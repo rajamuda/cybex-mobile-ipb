@@ -32,10 +32,9 @@ export class TulisDiskusiPage {
   ionViewDidLoad() {
     console.log('Hello TulisDiskusiPage Page');
 
-    if(this.userData.loginState){
-      console.log("sudah login");
-    }else{
-      console.log("tidak login");
+    if(this.userData.hasLoggedIn()){
+    }
+    else{
       let alert = this.alertCtrl.create({
         title: 'Anda belum login',
         subTitle: 'Silakan lakukan login terlebih dahulu untuk dapat menulis artikel',

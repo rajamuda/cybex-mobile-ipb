@@ -35,8 +35,9 @@ export class UserData {
     this.storage.set('id', id);
   }
 
-  login(username) {
+  login(username, keterangan) {
     this.storage.set(this.HAS_LOGGED_IN, true);
+    this.storage.set('keterangan', keterangan);
     this.setUsername(username);
     this.events.publish('user:login');
     this.loginState = true;
@@ -61,6 +62,12 @@ export class UserData {
 
   getUsername() {
     return this.storage.get('username').then((value) => {
+      return value;
+    });
+  }
+
+  getKeterangan() {
+    return this.storage.get('keterangan').then((value) => {
       return value;
     });
   }
