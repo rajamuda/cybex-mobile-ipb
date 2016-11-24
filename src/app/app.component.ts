@@ -46,7 +46,7 @@ export class ConferenceApp {
     { title: 'Tentang', component: AboutPage, icon: 'information-circle' },
     // { title: 'Signup', component: SignupPage, icon: 'person-add' }
   ];
-  rootPage: any = TabsPage;
+  rootPage: any = TutorialPage;
 
   constructor(
     public events: Events,
