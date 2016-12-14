@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
+import { HTTP } from 'ionic-native';
+
 import { ActionSheetController } from 'ionic-angular';
 import { NotifikasiPage } from '../notifikasi/notifikasi'
 import { ArtikelBacaPage } from '../artikel-baca/artikel-baca';
@@ -9,14 +11,6 @@ import { TulisArtikelPage } from '../tulis-artikel/tulis-artikel';
 import { TulisDiskusiPage } from '../tulis-diskusi/tulis-diskusi';
 import '../../providers/user-data';
 
-import { AuthHttp } from 'angular2-jwt';
-
-/*
-  Generated class for the Diskusi page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-diskusi',
   templateUrl: 'diskusi.html'
@@ -29,7 +23,9 @@ export class DiskusiPage {
   public response;
   public items;
 
-  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController, public authHttp: AuthHttp) {
+  public iseng;
+
+  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
     this.getData();
   }
 
@@ -55,15 +51,22 @@ export class DiskusiPage {
       this.diskusi = res.json();
       console.log('dapet data');
     });
+
+    HTTP.get('http://greentransport.ipb.ac.id/api/update', {}, {})
+      .then(data => {
+
+        this.iseng = data;
+
+      })
+      .catch(error => {
+
+        console.log(error.status);
+
+      });
   }
 
   ionViewDidLoad() {
     this.getData();
-
-    this.authHttp.get('http://cybex.agri.web.id/api/all_diskusi.php?limit='+this.limit).subscribe(res => {
-      this.diskusi = res.json();
-      console.log('dapet data nih bro'+this.diskusi);
-    });
   }
 
   doInfinite(infiniteScroll) {

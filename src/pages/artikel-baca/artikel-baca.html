@@ -16,7 +16,9 @@
     <ion-spinner></ion-spinner>
   </div>
 	<div padding *ngFor="let post of posts">
+    
       <img *ngIf="post.foto !== null" src="http://cybex.ipb.ac.id/uploads/{{post.foto}}" />
+
     <h3 primary>
       <b class="judul">{{post.judul_artikel}}</b>
     </h3>
@@ -46,7 +48,7 @@
   <div *ngFor="let com of comments">
     <ion-card>
       <ion-card-header class="midnight">
-        <b>{{com.nama_user}}</b> <span class="grey" style="font-size: 70%;"> pada {{com.tanggal_komentar | date: 'dd/MM/yyyy HH:mm'}}</span>
+        <b>{{com.nama_user}}</b> <span style="font-size: 70%;color:#7f8c8d"> pada {{com.tanggal_komentar | date: 'dd/MM/yyyy HH:mm'}}</span>
       </ion-card-header>
       <ion-card-content>
        <p [innerHTML]="com.isi_komentar"></p>

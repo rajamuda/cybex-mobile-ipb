@@ -7,12 +7,6 @@ import { ImagePicker } from 'ionic-native';
 import { UserData } from '../../providers/user-data';
 import { LoginPage } from '../login/login';
 
-/*
-  Generated class for the TulisArtikel page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-tulis-artikel',
   templateUrl: 'tulis-artikel.html'
@@ -39,10 +33,10 @@ export class TulisArtikelPage {
       this.koms = res.json();
     });
 
-    if(this.userData.loginState){
-      console.log("sudah login");
-    }else{
-      console.log("tidak login");
+    if (this.userData.hasLoggedIn()) {
+
+    }
+    else {
       let alert = this.alertCtrl.create({
         title: 'Anda belum login',
         subTitle: 'Silakan lakukan login terlebih dahulu untuk dapat menulis artikel',

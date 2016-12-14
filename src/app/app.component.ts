@@ -42,7 +42,7 @@ export class ConferenceApp {
     { title: 'Tentang', component: AboutPage, icon: 'information-circle' },
   ];
   loggedOutPages: PageObj[] = [
-    { title: 'Login/Daftar', component: LoginPage, icon: 'log-in' },
+    { title: 'Login', component: LoginPage, icon: 'log-in' },
     { title: 'Tentang', component: AboutPage, icon: 'information-circle' },
     // { title: 'Signup', component: SignupPage, icon: 'person-add' }
   ];
