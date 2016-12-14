@@ -19,6 +19,7 @@
   <ion-list>
     <div *ngFor="let post of posts">
       <ion-card (click)="baca(post.id_artikel)">
+        <img *ngIf="post.foto !== null" src="http://cybex.ipb.ac.id/uploads/{{post.foto}}" />
         <ion-card-header>
           <b class="judul">{{post.judul_artikel}}</b>
           <p class="info">Oleh: <b>{{post.nama_user_input}}</b> <span style="color:#7f8c8d">| {{post.tanggal}}</span></p>
