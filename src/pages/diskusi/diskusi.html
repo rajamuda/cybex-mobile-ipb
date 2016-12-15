@@ -32,6 +32,9 @@
       Memuat data...
     </p>
   </div>
+  <div text-center *ngIf="httpErr">
+    <button ion-button (click)="getData()">Segarkan</button>
+  </div>
   <ion-list>
     <div *ngFor="let dis of diskusi">
       <ion-card (click)="baca(dis.id_artikel)" class="head">

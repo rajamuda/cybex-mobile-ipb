@@ -5,16 +5,17 @@ import { NavParams } from 'ionic-angular';
 import { ArtikelPage } from '../artikel/artikel';
 import { CariPage } from '../cari/cari';
 import { DiskusiPage } from '../diskusi/diskusi';
-
+import { BeritaPage } from '../berita/berita';
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
   // set the root pages for each tab
-  tab1Root: any = DiskusiPage;
-  tab2Root: any = ArtikelPage;
-  tab3Root: any = CariPage;
+  tab1Root: any = BeritaPage;
+  tab2Root: any = DiskusiPage;
+  tab3Root: any = ArtikelPage;
+  tab4Root: any = CariPage;
   mySelectedIndex: number;
   public ionScroll;
 
@@ -23,9 +24,9 @@ export class TabsPage {
   }
 
 
-  ssss(){
-  	console.log("jalaaaaan!");
+  // scrollTop(){
+  // 	console.log("jalaaaaan!");
 
-  }
+  // }
 
 }

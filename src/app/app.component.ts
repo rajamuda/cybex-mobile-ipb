@@ -31,9 +31,10 @@ export class ConferenceApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageObj[] = [
-    { title: 'Diskusi', component: TabsPage, icon: 'people' },
-    { title: 'Artikel', component: TabsPage, index: 1, icon: 'book' },
-    { title: 'Cari', component: TabsPage, index: 2, icon: 'search' },
+    { title: 'Berita', component: TabsPage, icon: 'paper' },
+    { title: 'Diskusi', component: TabsPage, index: 1, icon: 'people' },
+    { title: 'Artikel', component: TabsPage, index: 2, icon: 'book' },
+    { title: 'Cari', component: TabsPage, index: 3, icon: 'search' },
     // { title: 'About', component: TabsPage, index: 3, icon: 'information-circle' },
   ];
   loggedInPages: PageObj[] = [
@@ -46,7 +47,7 @@ export class ConferenceApp {
     { title: 'Tentang', component: AboutPage, icon: 'information-circle' },
     // { title: 'Signup', component: SignupPage, icon: 'person-add' }
   ];
-  rootPage: any = TutorialPage;
+  rootPage: any = TabsPage;
 
   constructor(
     public events: Events,

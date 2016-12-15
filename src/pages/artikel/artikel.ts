@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
@@ -23,9 +23,10 @@ export class ArtikelPage {
 
 	public posts;
   public limit = 0;
+  public httpErr = false;
 
-  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
-    this.getData();
+  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController) {
+    // this.getData();
   }
 
   ionViewDidLoad() {
@@ -47,7 +48,8 @@ export class ArtikelPage {
   getData() {
     this.http.get('http://cybex.agri.web.id/api/all_artikel.php?limit='+this.limit).subscribe(res => {
       this.posts = res.json();
-    });
+      this.httpErr = false;
+    }, err => {this.showAlert(err.status)});
   }
 
   doInfinite(infiniteScroll) {
@@ -95,6 +97,26 @@ export class ArtikelPage {
       ]
     });
     actionSheet.present();
+  }
+
+  showAlert(status){
+    if(status == 0){
+      let alert = this.alertCtrl.create({
+        title: 'Koneksi gagal',
+        subTitle: 'Mohon cek kembali sambungan internet perangkat Anda.',
+        buttons: ['OK']
+      });
+      alert.present();
+    }else{
+      let alert = this.alertCtrl.create({
+        title: 'Gagal menyambungkan ke server',
+        subTitle: 'Mohon tekan tombol \'Segarkan\' untuk me-refresh halaman ini.',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+
+    this.httpErr = true;
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { HTTP } from 'ionic-native';
@@ -19,13 +19,18 @@ export class DiskusiPage {
   public diskusi;
   public isi;
   public limit=0;
+  public httpErr = false;
 
   public response;
   public items;
 
   public iseng;
 
-  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController) {
+  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController) {
+
+  }
+
+  ionViewDidLoad() {
     this.getData();
   }
 
@@ -50,23 +55,20 @@ export class DiskusiPage {
     this.http.get('http://cybex.agri.web.id/api/all_diskusi.php?limit='+this.limit).subscribe(res => {
       this.diskusi = res.json();
       console.log('dapet data');
-    });
+      this.httpErr = false;
+    }, err => {this.showAlert(err.status)});
 
-    HTTP.get('http://greentransport.ipb.ac.id/api/update', {}, {})
-      .then(data => {
+    // HTTP.get('http://greentransport.ipb.ac.id/api/update', {}, {})
+    //   .then(data => {
 
-        this.iseng = data;
+    //     this.iseng = data;
 
-      })
-      .catch(error => {
+    //   })
+    //   .catch(error => {
 
-        console.log(error.status);
+    //     console.log(error.status);
 
-      });
-  }
-
-  ionViewDidLoad() {
-    this.getData();
+    //   });
   }
 
   doInfinite(infiniteScroll) {
@@ -116,5 +118,23 @@ export class DiskusiPage {
     actionSheet.present();
   }
 
+   showAlert(status){
+    if(status == 0){
+      let alert = this.alertCtrl.create({
+        title: 'Koneksi gagal',
+        subTitle: 'Mohon cek kembali sambungan internet perangkat Anda.',
+        buttons: ['OK']
+      });
+      alert.present();
+    }else{
+      let alert = this.alertCtrl.create({
+        title: 'Gagal menyambungkan ke server',
+        subTitle: 'Mohon tekan tombol \'Segarkan\' untuk me-refresh halaman ini.',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
 
+    this.httpErr = true;
+  }
 }
