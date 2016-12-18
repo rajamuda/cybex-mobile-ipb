@@ -21,31 +21,39 @@ export class LoginPage {
     let creds = JSON.stringify({username: this.login.username, password: this.login.password});
 
     console.log(creds);
+
     let loading = this.loadCtrl.create({
         content: 'Mengecek...'
     });
     loading.present();
 
-    this.http.post('http://cybex.ipb.ac.id/test/index.php', creds).subscribe(res => {
-      let response = res.json();
-
-      console.log(response['status']);
+    if(!this.login.username || !this.login.password){
       loading.dismiss();
-      if (response['status']){
-        this.submitted = true;
-
-        if (form.valid) {
-          this.userData.setToken(response['token']);
-          this.userData.setId(response['id']);
-          this.userData.login(response['nama'], response['keterangan']);
-          this.navCtrl.push(TabsPage);
-        }
+      this.showAlert();
+    }else{
+    
+        this.http.post('http://cybex.ipb.ac.id/test/index.php', creds).subscribe(res => {
+          let response = res.json();
+    
+          console.log(response['status']);
+          loading.dismiss();
+          if (response['status']){
+            this.submitted = true;
+    
+            if (form.valid) {
+              this.userData.setToken(response['token']);
+              this.userData.setId(response['id']);
+              this.userData.login(response['nama'], response['keterangan']);
+              this.navCtrl.push(TabsPage);
+            }
+          }
+          else {
+            loading.dismiss();
+            this.showAlert();
+          }
+    
+        });
       }
-      else {
-        this.showAlert();
-      }
-
-    });
   }
 
   showAlert() {

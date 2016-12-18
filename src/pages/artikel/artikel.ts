@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
@@ -25,11 +25,15 @@ export class ArtikelPage {
   public limit = 0;
   public httpErr = false;
 
-  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController) {
-    // this.getData();
+  constructor(public navCtrl: NavController, public http: Http, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController) {
+    this.getData();
   }
 
   ionViewDidLoad() {
+    // this.getData();
+  }
+
+  ionViewWillEnter() {
     this.getData();
   }
 
@@ -101,19 +105,21 @@ export class ArtikelPage {
 
   showAlert(status){
     if(status == 0){
-      let alert = this.alertCtrl.create({
-        title: 'Koneksi gagal',
-        subTitle: 'Mohon cek kembali sambungan internet perangkat Anda.',
-        buttons: ['OK']
+      let toast = this.toastCtrl.create({
+        message: 'Tidak ada koneksi. Cek kembali sambungan Internet perangkat Anda.',
+        position: 'bottom',
+        showCloseButton: true,
+        closeButtonText: 'X'
       });
-      alert.present();
+      toast.present();
     }else{
-      let alert = this.alertCtrl.create({
-        title: 'Gagal menyambungkan ke server',
-        subTitle: 'Mohon tekan tombol \'Segarkan\' untuk me-refresh halaman ini.',
-        buttons: ['OK']
+      let toast = this.toastCtrl.create({
+        message: 'Tidak dapat menyambungkan ke server. Mohon muat kembali halaman ini.',
+        position: 'bottom',
+        showCloseButton: true,
+        closeButtonText: 'X'
       });
-      alert.present();
+      toast.present();
     }
 
     this.httpErr = true;

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
+import { UserData } from '../../providers/user-data';
 
 import { TulisKomentarPage } from '../tulis-komentar/tulis-komentar';
 import 'rxjs/add/operator/map';
@@ -19,10 +20,18 @@ export class ArtikelBacaPage {
   public posts: any;
   public comments: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http,public userData: UserData) {
   	this.id = navParams.data;
 
     this.getData();
+  }
+
+  islogin(){
+    if(this.userData.loginState){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   getData() {

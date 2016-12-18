@@ -73,6 +73,6 @@ import { BeritaPage } from '../pages/berita/berita';
     NotifikasiPage,
     BeritaPage
   ],
-  providers: [UserData, Storage]
+  providers: [Storage, UserData]
 })
 export class AppModule {}

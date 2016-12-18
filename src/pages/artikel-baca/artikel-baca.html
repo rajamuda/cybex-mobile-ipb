@@ -56,7 +56,9 @@
     </ion-card>
   </div>
 
+  <div *ngIf="islogin()">
   <ion-fab right bottom>
     <button ion-fab color="primary" (click)="tulisKomentar()"><ion-icon name="chatboxes"></ion-icon></button>
   </ion-fab>
+  </div>
 </ion-content>

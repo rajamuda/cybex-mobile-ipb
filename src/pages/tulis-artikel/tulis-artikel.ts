@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, App, ActionSheetController, AlertController } from 'ionic-angular';
+import { NavController, App, ActionSheetController, AlertController, ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Camera } from 'ionic-native';
 import { ImagePicker } from 'ionic-native';
@@ -19,11 +19,11 @@ export class TulisArtikelPage {
   public id_kategori = 1;
   public id_topik = 1;
   public id_komoditas: any;
-  public id_user_input = 12;
+  public id_user_input;
   public koms;
   public noInput = false;
 
-  constructor(public navCtrl: NavController, public app: App, public http: Http, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController, public userData: UserData) {
+  constructor(public toastCtrl: ToastController, public navCtrl: NavController, public app: App, public http: Http, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController, public userData: UserData) {
 
   }
 
@@ -33,13 +33,13 @@ export class TulisArtikelPage {
       this.koms = res.json();
     });
 
-    if (this.userData.hasLoggedIn()) {
-
+    if(this.userData.loginState){
+      this.userData.getID();
     }
     else {
       let alert = this.alertCtrl.create({
         title: 'Anda belum login',
-        subTitle: 'Silakan lakukan login terlebih dahulu untuk dapat menulis artikel',
+        subTitle: 'Silakan lakukan login terlebih dahulu untuk dapat menulis artikel baru',
         buttons: [{
             text: 'Login',
             handler: () => {
@@ -81,18 +81,40 @@ export class TulisArtikelPage {
   }
 
   kirim() {
-      if(this.isi_artikel == undefined || this.judul_artikel == undefined || this.id_komoditas == undefined){
+      if(this.isi_artikel == undefined || this.judul_artikel == undefined || this.id_komoditas == undefined  || !this.isi_artikel || !this.judul_artikel || !this.id_komoditas){
         this.noInput = true;
       }else{
+      this.id_user_input = this.userData.ids;
       this.input = JSON.stringify({isi_artikel: this.isi_artikel, judul_artikel: this.judul_artikel,
         id_kategori: this.id_kategori, id_topik: this.id_topik, id_komoditas: this.id_komoditas, id_user_input: this.id_user_input});
       console.log(this.input);
-      this.http.post("http://cybex.agri.web.id/api/tulis_artikel.php", this.input)
-          .subscribe(data => {
-                  this.navCtrl.pop();
+      this.http.post("http://cybex.agri.web.id/api/tulis_artikel.php", this.input).subscribe(data => {
+          let v = data.json();
+          this.showToast(v['message']);
+          this.navCtrl.pop();
       });
       }
   }
+
+  showToast(val){
+    if(val === "\nsukses"){
+      let toast = this.toastCtrl.create({
+        message: 'Artikel berhasil dibuat',
+        duration: 3500,
+        position: 'top'
+      });
+      toast.present();
+    }else{
+      let toast = this.toastCtrl.create({
+        message: '(x) Gagal membuat artikel',
+        duration: 3500,
+        position: 'top'
+      });
+      toast.present();
+    }
+
+  }
+
 
   ambilGambar() {
     let actionSheet = this.actionSheetCtrl.create({

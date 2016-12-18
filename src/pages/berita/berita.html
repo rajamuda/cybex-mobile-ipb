@@ -34,7 +34,7 @@
     </p>
   </div>
   <div text-center *ngIf="httpErr">
-  	<button ion-button (click)="getData()">Segarkan</button>
+  	<button ion-button (click)="getData()">Muat Kembali</button>
   </div>
   <ion-list>
     <div *ngFor="let post of posts">
@@ -44,7 +44,7 @@
         <img *ngIf="post.foto !== null" src="http://cybex.ipb.ac.id/uploads/{{post.foto}}" />
         <ion-card-header>
           <b class="judul">{{post.judul_artikel}}</b>
-          <p class="info">Oleh: {{post.nama_user_input}} <span style="color:#7f8c8d">| {{post.tanggal}}</span></p><hr>
+          <p class="info">Oleh: <b>{{post.nama_user_input}}</b> <span style="color:#7f8c8d">| {{post.tanggal}}</span></p><hr>
         </ion-card-header>
         <ion-card-content>
           <p class="text" [innerHTML]="post.isi_artikel"></p><br />

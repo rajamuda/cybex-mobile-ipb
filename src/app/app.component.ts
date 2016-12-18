@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
 import { Splashscreen, StatusBar } from 'ionic-native';
+import { Http } from '@angular/http';
 
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
@@ -10,6 +11,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { AboutPage } from '../pages/about/about';
 
 import { UserData } from '../providers/user-data';
+import { Storage } from '@ionic/storage';
 
 export interface PageObj {
   title: string;
@@ -23,6 +25,7 @@ export interface PageObj {
   templateUrl: 'app.template.html'
 })
 export class ConferenceApp {
+  public out;
   // the root nav is a child of the root app component
   // @ViewChild(Nav) gets a reference to the app's root nav
   @ViewChild(Nav) nav: Nav;
@@ -53,8 +56,11 @@ export class ConferenceApp {
     public events: Events,
     public userData: UserData,
     public menu: MenuController,
+    public storage: Storage,
+    public http: Http,
     platform: Platform
   ) {
+
     // Call any initial plugins when ready
     platform.ready().then(() => {
       StatusBar.styleDefault();
@@ -62,8 +68,20 @@ export class ConferenceApp {
     });
 
     // decide which menu items should be hidden by current login status stored in local storage
-    this.userData.hasLoggedIn().then((hasLoggedIn) => {
-      this.enableMenu(hasLoggedIn === true);
+    // this.userData.hasLoggedIn().then((hasLoggedIn) => {
+    //   this.enableMenu(hasLoggedIn === true);
+    // });
+    this.storage.get('token').then((val) => {
+      var creds = JSON.stringify({jwtToken: val});
+      // console.log(creds+" --- "+val);
+      this.http.post('http://cybex.ipb.ac.id/test/check.php', creds).subscribe((ret) => {
+        this.out = ret.json();
+        if(this.out.status){
+          this.events.publish('user:login');
+          // this.enableMenu(true);
+        }
+      });
+      
     });
 
     this.listenToLoginEvents();
@@ -91,6 +109,7 @@ export class ConferenceApp {
   listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
       this.enableMenu(true);
+      this.userData.loginState = true;
     });
 
     this.events.subscribe('user:signup', () => {

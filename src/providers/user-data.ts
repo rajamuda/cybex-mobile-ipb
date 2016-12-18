@@ -3,14 +3,21 @@ import { Injectable } from '@angular/core';
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+import { Http } from '@angular/http';
+
 
 @Injectable()
 export class UserData {
   _favorites = [];
   HAS_LOGGED_IN = 'hasLoggedIn';
-  loginState = false;
+  public loginState = false;
+  public token;
+  public ids;
+  public input: string;
+  public jwt: any;
+  public out;
 
-  constructor(public events: Events, public storage: Storage) {}
+  constructor(public events: Events, public storage: Storage, public http: Http) {}
 
   hasFavorite(sessionName) {
     return (this._favorites.indexOf(sessionName) > -1);
@@ -52,12 +59,32 @@ export class UserData {
   logout() {
     this.storage.remove(this.HAS_LOGGED_IN);
     this.storage.remove('username');
+    this.storage.remove('token');
+    this.storage.remove('id');
+    this.storage.remove('keterangan');
     this.events.publish('user:logout');
     this.loginState = false;
+    // location.reload();
   }
 
   setUsername(username) {
     this.storage.set('username', username);
+  }
+
+  getID() {
+     this.storage.get('id').then((res) => {
+        this.ids = res;
+        return this.ids;
+     });
+  }
+
+  getToken() {
+   this.storage.get('token').then((val) => {
+      this.token = val;
+    });
+
+   return this.token;
+    
   }
 
   getUsername() {
@@ -73,9 +100,17 @@ export class UserData {
   }
 
   // return a promise
-  hasLoggedIn() {
-    return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
-      return value === true;
-    });
-  }
+  // hasLoggedIn(val = this.getToken()) {
+  //   this.jwt = val;
+  //   this.input = JSON.stringify({jwtToken: this.jwt});
+
+  //   this.http.post('http://cybex.ipb.ac.id/test/check.php', this.input).subscribe((ret) => {
+  //     this.out = ret.json();
+  //     if(this.out.status){
+  //       this.loginState = true;
+  //     }else{
+  //       this.loginState = false;
+  //     }
+  //   });
+  // }
 }
