@@ -97,7 +97,7 @@ export class TulisArtikelPage {
   }
 
   showToast(val){
-    if(val === "\nsukses"){
+    if(val === "sukses"){
       let toast = this.toastCtrl.create({
         message: 'Artikel berhasil dibuat',
         duration: 3500,
