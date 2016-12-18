@@ -31,10 +31,11 @@ export class DiskusiPage {
   }
 
   ionViewDidLoad() {
-    // this.getData();
+    //this.getData();
   }
 
   ionViewWillEnter() {
+    this.limit = 0;
     this.getData();
   }
 
@@ -44,7 +45,6 @@ export class DiskusiPage {
 
   doRefresh(refresher) {
     this.limit = 0;
-
     setTimeout(() => {
       this.getData();
       refresher.complete();

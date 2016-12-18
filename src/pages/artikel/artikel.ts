@@ -30,10 +30,11 @@ export class ArtikelPage {
   }
 
   ionViewDidLoad() {
-    // this.getData();
+    //this.getData();
   }
 
   ionViewWillEnter() {
+    this.limit = 0;
     this.getData();
   }
 
@@ -42,9 +43,9 @@ export class ArtikelPage {
   }
 
   doRefresh(refresher) {
-
+    this.limit =0;
     setTimeout(() => {
-      this.ionViewDidLoad();
+      this.getData();
       refresher.complete();
     }, 1500);
   }

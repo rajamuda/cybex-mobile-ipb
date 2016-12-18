@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { ActionSheetController } from 'ionic-angular';
@@ -23,8 +23,11 @@ export class CariPage {
 	public searchQuery = "";
   public posts;
   public limit = 0;
+  public httpErr = false;
 
-  constructor(public navCtrl: NavController, public actionSheetCtrl: ActionSheetController, public http: Http) {}
+  constructor(public navCtrl: NavController, public actionSheetCtrl: ActionSheetController, public http: Http, public toastCtrl: ToastController) {
+    this.getData();
+  }
 
   ionViewDidLoad() {
     console.log('Hello CariPage Page');
@@ -34,16 +37,17 @@ export class CariPage {
     this.navCtrl.push(NotifikasiPage);
   }
 
-  initializeItems() {
-
-    this.http.get('http://cybex.agri.web.id/api/search.php?search='+this.searchQuery+'&limit='+this.limit).map(res => res.json()).subscribe(data => {
-        this.posts = data;
-    });
-
+  getData() {
+    this.limit = 0;
+    this.http.get('http://cybex.agri.web.id/api/search.php?search='+this.searchQuery+'&limit='+this.limit).subscribe(res => {
+      this.posts = res.json();
+      console.log('dapet data');
+      this.httpErr = false;
+    }, err => {this.showAlert(err.status)});
   }
 
  getItems(searchbar){
- 	 this.initializeItems();
+ 	 this.getData();
  }
 
   doInfinite(infiniteScroll) {
@@ -58,7 +62,7 @@ export class CariPage {
 
       console.log('Async operation has ended');
       infiniteScroll.complete();
-    }, 500);
+    }, 2000);
   }
 
  baca(idArtikel){
@@ -95,4 +99,25 @@ export class CariPage {
     actionSheet.present();
   }
 
+  showAlert(status){
+    if(status == 0){
+      let toast = this.toastCtrl.create({
+        message: 'Tidak ada koneksi. Cek kembali sambungan Internet perangkat Anda.',
+        position: 'bottom',
+        showCloseButton: true,
+        closeButtonText: 'X'
+      });
+      toast.present();
+    }else{
+      let toast = this.toastCtrl.create({
+        message: 'Tidak dapat menyambungkan ke server. Mohon muat kembali halaman ini.',
+        position: 'bottom',
+        showCloseButton: true,
+        closeButtonText: 'X'
+      });
+      toast.present();
+    }
+
+    this.httpErr = true;
+  }
 }

@@ -28,6 +28,7 @@ export class BeritaPage {
   }
 
   ionViewWillEnter() {
+    this.limit = 0;
     this.getData();
   }
 
