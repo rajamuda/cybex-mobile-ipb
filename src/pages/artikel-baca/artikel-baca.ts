@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { UserData } from '../../providers/user-data';
 
 import { TulisKomentarPage } from '../tulis-komentar/tulis-komentar';
+import { SocialSharing } from 'ionic-native';
 import 'rxjs/add/operator/map';
 /*
   Generated class for the ArtikelBaca page.
@@ -58,5 +59,12 @@ export class ArtikelBacaPage {
   tulisKomentar() {
     this.navCtrl.push(TulisKomentarPage, this.id);
   }
-
+ 
+  facebookShare() {
+    SocialSharing.shareViaFacebook(this.posts.judul_artikel, 'http://cybex.ipb.ac.id/uploads/'+this.posts.foto+'', 'http://cybex.ipb.ac.id/index.php/atikel/detail/'+this.posts.nama_kategori+'/'+this.id+'').then(() => {
+      alert("Successful")
+    }).catch(() => {
+      alert("Failed")
+    });
+  }
 }
