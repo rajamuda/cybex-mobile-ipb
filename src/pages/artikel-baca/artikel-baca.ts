@@ -20,6 +20,7 @@ export class ArtikelBacaPage {
   public id: any;
   public posts: any;
   public comments: any;
+  public sharePic;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http,public userData: UserData) {
   	this.id = navParams.data;
@@ -60,11 +61,17 @@ export class ArtikelBacaPage {
     this.navCtrl.push(TulisKomentarPage, this.id);
   }
  
-  facebookShare() {
-    SocialSharing.shareViaFacebook(this.posts.judul_artikel, 'http://cybex.ipb.ac.id/uploads/'+this.posts.foto+'', 'http://cybex.ipb.ac.id/index.php/atikel/detail/'+this.posts.nama_kategori+'/'+this.id+'').then(() => {
-      alert("Successful")
+  share() {
+    if (this.posts.foto == null) {
+      this.sharePic = null;
+    }
+    else {
+      this.sharePic = 'http://cybex.ipb.ac.id/uploads/' + this.posts.foto;
+    }
+    SocialSharing.share(this.posts.judul_artikel, 'Cybex IPB | ' + this.posts.judul_artikel, this.sharePic, 'http://cybex.ipb.ac.id/index.php/atikel/detail/' + this.posts.nama_kategori + '/' + this.id).then(() => {
+      alert("Berhasil membagikan");
     }).catch(() => {
-      alert("Failed")
+      alert("Batal membagikan");
     });
   }
 }
