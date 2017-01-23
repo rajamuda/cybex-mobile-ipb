@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, App,  ActionSheetController, AlertController, ToastController } from 'ionic-angular';
+import { NavController, App,  ActionSheetController, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { UserData } from '../../providers/user-data';
@@ -31,7 +31,7 @@ export class TulisDiskusiPage {
   public koms;
   public gambar: string;
 
-  constructor(public toastCtrl: ToastController, public navCtrl: NavController, public app: App, public http: Http, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController, public userData: UserData) {
+  constructor(public loadCtrl: LoadingController, public toastCtrl: ToastController, public navCtrl: NavController, public app: App, public http: Http, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController, public userData: UserData) {
 
   }
 
@@ -113,6 +113,11 @@ export class TulisDiskusiPage {
       if(this.isi_diskusi == undefined || this.judul_diskusi == undefined || !this.isi_diskusi || !this.judul_diskusi){
         this.noInput = true;
       }else{
+        let loading = this.loadCtrl.create({
+            content: 'Memposting diskusi Anda...'
+        });
+        loading.present();
+
         this.id_user_input = this.userData.ids;
         this.input = JSON.stringify({isi_artikel: this.isi_diskusi, judul_artikel: this.judul_diskusi, id_kategori: this.id_kategori, id_komoditas: this.id_komoditas, id_user_input: this.id_user_input, id_topik: this.id_topik, gambar: this.gambar});
         console.log(this.input);
@@ -121,13 +126,15 @@ export class TulisDiskusiPage {
           this.showToast(v['message']);
           this.navCtrl.pop();
         });
+
+        loading.dismiss();
       }
   }
 
   showToast(val){
     if(val === "sukses"){
       let toast = this.toastCtrl.create({
-        message: 'Diskusi berhasil dibuat',
+        message: 'Diskusi berhasil dibuat. Diskusi Anda sedang diverifikasi sebelum dipublikasikan.',
         duration: 3500,
         position: 'top'
       });

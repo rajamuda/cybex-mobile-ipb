@@ -6,6 +6,7 @@ import { Http } from '@angular/http';
 
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { AboutPage } from '../pages/about/about';
@@ -47,8 +48,8 @@ export class ConferenceApp {
   ];
   loggedOutPages: PageObj[] = [
     { title: 'Login', component: LoginPage, icon: 'log-in' },
-    { title: 'Tentang', component: AboutPage, icon: 'information-circle' },
-    // { title: 'Signup', component: SignupPage, icon: 'person-add' }
+    { title: 'Daftar', component: SignupPage, icon: 'person-add' },
+    { title: 'Tentang', component: AboutPage, icon: 'information-circle' }
   ];
   rootPage: any = TabsPage;
 
@@ -65,6 +66,15 @@ export class ConferenceApp {
     platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
+
+      this.storage.get('didTutorial').then((result)=>{
+        if(result){
+          this.rootPage = TabsPage;
+        }else{
+          this.rootPage = TutorialPage;
+          this.storage.set('didTutorial', true);
+        }
+      });
     });
 
     // decide which menu items should be hidden by current login status stored in local storage

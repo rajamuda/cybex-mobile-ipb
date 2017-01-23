@@ -23,7 +23,7 @@ export class ArtikelBacaPage {
   public sharePic;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http,public userData: UserData) {
-  	this.id = navParams.data;
+    this.id = navParams.data;
 
     this.getData();
   }
@@ -39,6 +39,7 @@ export class ArtikelBacaPage {
   getData() {
     this.http.get('http://cybex.agri.web.id/api/artikel_b.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
         this.posts = data;
+
     });
 
     this.http.get('http://cybex.agri.web.id/api/comment.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
@@ -62,16 +63,24 @@ export class ArtikelBacaPage {
   }
  
   share() {
-    if (this.posts.foto == null) {
-      this.sharePic = null;
-    }
-    else {
-      this.sharePic = 'http://cybex.ipb.ac.id/uploads/' + this.posts.foto;
-    }
-    SocialSharing.share(this.posts.judul_artikel, 'Cybex IPB | ' + this.posts.judul_artikel, this.sharePic, 'http://cybex.ipb.ac.id/index.php/atikel/detail/' + this.posts.nama_kategori + '/' + this.id).then(() => {
-      alert("Berhasil membagikan");
-    }).catch(() => {
-      alert("Batal membagikan");
+    console.log(this.posts);
+    this.http.get('http://cybex.agri.web.id/api/artikel_b.php?share=1&idartikel='+this.id).map(res => res.json()).subscribe(data => {
+        // this.posts = data;
+    
+        if (data.foto == null) {
+          this.sharePic = null;
+        }
+        else {
+          this.sharePic = 'http://cybex.ipb.ac.id/uploads/' + data.foto;
+        }
+
+        // console.log(data.nama_kategori+" "+data.judul_artikel);
+        console.log('http://cybex.ipb.ac.id/index.php/artikel/detail/' + data.nama_kategori + '/' + this.id);
+        SocialSharing.share(data.judul_artikel, 'Cybex IPB | ' + data.judul_artikel, this.sharePic, 'http://cybex.ipb.ac.id/index.php/artikel/detail/' + data.nama_kategori + '/' + this.id).then(() => {
+          alert("Berhasil membagikan");
+        }).catch(() => {
+          alert("Batal membagikan");
+        });
     });
   }
 }

@@ -20,7 +20,7 @@ export class LoginPage {
   onLogin(form) {
     let creds = JSON.stringify({username: this.login.username, password: this.login.password});
 
-    console.log(creds);
+    // console.log(creds);
 
     let loading = this.loadCtrl.create({
         content: 'Mengecek...'

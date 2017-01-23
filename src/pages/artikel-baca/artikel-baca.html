@@ -15,7 +15,7 @@
   <div text-center *ngIf="!posts">
     <ion-spinner></ion-spinner>
   </div>
-	<div padding *ngFor="let post of posts">
+  <div padding *ngFor="let post of posts">
     
       <img *ngIf="post.foto !== null" src="http://cybex.ipb.ac.id/uploads/{{post.foto}}" />
 

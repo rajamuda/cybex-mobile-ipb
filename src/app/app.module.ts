@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { IonicApp, IonicModule } from 'ionic-angular';
-import { Http } from '@angular/http';
+// import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 
 import { ConferenceApp } from './app.component';

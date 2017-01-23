@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController,ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
-import { HTTP } from 'ionic-native';
+// import { HTTP } from 'ionic-native';
 
 import { ActionSheetController } from 'ionic-angular';
 import { NotifikasiPage } from '../notifikasi/notifikasi'
