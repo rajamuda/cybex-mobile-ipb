@@ -31,15 +31,15 @@ export class TulisArtikelPage {
 
   ionViewDidLoad() {
     console.log('Hello TulisArtikelPage Page');
-    this.http.get('http://cybex.agri.web.id/api/all_komoditas.php').subscribe(res => {
+    this.http.get('http://cybex.ipb.ac.id/api/all_komoditas.php').subscribe(res => {
       this.koms = res.json();
     });
 
-    this.http.get('http://cybex.agri.web.id/api/all_topik.php').subscribe(res => {
+    this.http.get('http://cybex.ipb.ac.id/api/all_topik.php').subscribe(res => {
       this.tops = res.json();
     });
 
-    this.http.get('http://cybex.agri.web.id/api/all_kategori.php').subscribe(res => {
+    this.http.get('http://cybex.ipb.ac.id/api/all_kategori.php').subscribe(res => {
       this.kats = res.json();
     });
 
@@ -116,7 +116,7 @@ export class TulisArtikelPage {
         this.input = JSON.stringify({isi_artikel: this.isi_artikel, judul_artikel: this.judul_artikel,
           id_kategori: this.id_kategori, id_topik: this.id_topik, id_komoditas: this.id_komoditas, id_user_input: this.id_user_input, gambar: this.gambar});
         console.log(this.input);
-        this.http.post("http://cybex.agri.web.id/api/tulis_artikel.php", this.input).subscribe(data => {
+        this.http.post("http://cybex.ipb.ac.id/api/tulis_artikel.php", this.input).subscribe(data => {
             let v = data.json();
             this.showToast(v['message']);
             this.navCtrl.pop();

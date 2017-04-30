@@ -45,7 +45,7 @@ export class BeritaPage {
   }
 
   getData() {
-    this.http.get('http://cybex.agri.web.id/api/all_berita.php?limit='+this.limit).subscribe(res => {
+    this.http.get('http://cybex.ipb.ac.id/api/all_berita.php?limit='+this.limit).subscribe(res => {
       this.posts = res.json();
       this.httpErr = false;
     }, err => {this.showAlert(err.status)});
@@ -56,7 +56,7 @@ export class BeritaPage {
     setTimeout(() => {
       this.limit = this.limit+5;
 
-      this.http.get('http://cybex.agri.web.id/api/all_berita.php?limit='+this.limit).subscribe(res => {
+      this.http.get('http://cybex.ipb.ac.id/api/all_berita.php?limit='+this.limit).subscribe(res => {
         this.posts = this.posts.concat(res.json());
         // this.httpErr = false;
       });

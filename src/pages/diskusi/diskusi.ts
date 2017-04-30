@@ -56,7 +56,7 @@ export class DiskusiPage {
   }
 
   getData() {
-    this.http.get('http://cybex.agri.web.id/api/all_diskusi.php?limit='+this.limit).subscribe(res => {
+    this.http.get('http://cybex.ipb.ac.id/api/all_diskusi.php?limit='+this.limit).subscribe(res => {
       this.diskusi = res.json();
       console.log('dapet data');
       this.httpErr = false;
@@ -79,7 +79,7 @@ export class DiskusiPage {
     setTimeout(() => {
       this.limit = this.limit+5;
 
-      this.http.get('http://cybex.agri.web.id/api/all_diskusi.php?limit='+this.limit).subscribe(res => {
+      this.http.get('http://cybex.ipb.ac.id/api/all_diskusi.php?limit='+this.limit).subscribe(res => {
         this.diskusi = this.diskusi.concat(res.json());
       });
 

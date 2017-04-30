@@ -39,7 +39,7 @@ export class CariPage {
 
   getData() {
     this.limit = 0;
-    this.http.get('http://cybex.agri.web.id/api/search.php?search='+this.searchQuery+'&limit='+this.limit).subscribe(res => {
+    this.http.get('http://cybex.ipb.ac.id/api/search.php?search='+this.searchQuery+'&limit='+this.limit).subscribe(res => {
       this.posts = res.json();
       console.log('dapet data');
       this.httpErr = false;
@@ -56,7 +56,7 @@ export class CariPage {
     setTimeout(() => {
       this.limit = this.limit+5;
 
-      this.http.get('http://cybex.agri.web.id/api/search.php?search='+this.searchQuery+'&limit='+this.limit).subscribe(res => {
+      this.http.get('http://cybex.ipb.ac.id/api/search.php?search='+this.searchQuery+'&limit='+this.limit).subscribe(res => {
         this.posts = this.posts.concat(res.json());
       });
 

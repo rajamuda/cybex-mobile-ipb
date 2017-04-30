@@ -37,12 +37,12 @@ export class ArtikelBacaPage {
   }
 
   getData() {
-    this.http.get('http://cybex.agri.web.id/api/artikel_b.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
+    this.http.get('http://cybex.ipb.ac.id/api/artikel_b.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
         this.posts = data;
 
     });
 
-    this.http.get('http://cybex.agri.web.id/api/comment.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
+    this.http.get('http://cybex.ipb.ac.id/api/comment.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
         this.comments = data;
     });
   }
@@ -64,7 +64,7 @@ export class ArtikelBacaPage {
  
   share() {
     console.log(this.posts);
-    this.http.get('http://cybex.agri.web.id/api/artikel_b.php?share=1&idartikel='+this.id).map(res => res.json()).subscribe(data => {
+    this.http.get('http://cybex.ipb.ac.id/api/artikel_b.php?share=1&idartikel='+this.id).map(res => res.json()).subscribe(data => {
         // this.posts = data;
     
         if (data.foto == null) {

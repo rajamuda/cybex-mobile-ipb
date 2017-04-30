@@ -30,7 +30,7 @@ export class NotifikasiPage {
   }
 
   getData() {
-    this.http.get('http://cybex.agri.web.id/api/notifikasi.php?iduser='+this.id_user+'&limit='+this.limit).subscribe(res => {
+    this.http.get('http://cybex.ipb.ac.id/api/notifikasi.php?iduser='+this.id_user+'&limit='+this.limit).subscribe(res => {
       this.nots = res.json();
     });
   }
@@ -54,7 +54,7 @@ export class NotifikasiPage {
     setTimeout(() => {
       this.limit = this.limit+5;
 
-      this.http.get('http://cybex.agri.web.id/api/notifikasi.php?iduser='+this.id_user+'&limit='+this.limit).subscribe(res => {
+      this.http.get('http://cybex.ipb.ac.id/api/notifikasi.php?iduser='+this.id_user+'&limit='+this.limit).subscribe(res => {
         this.nots = this.nots.concat(res.json());
       });
 

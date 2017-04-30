@@ -31,7 +31,7 @@ export class SignupPage {
 
    	let creds = JSON.stringify({username: this.signup.username, password: this.signup.password, password2: this.signup.password2, email: this.signup.email, nama: this.signup.nama});
    	
-   	this.http.post("http://cybex.agri.web.id/api/daftar_proses_api.php", creds).subscribe(res=>{
+   	this.http.post("http://cybex.ipb.ac.id/api/daftar_proses_api.php", creds).subscribe(res=>{
    		// console.log(res);
    		let response = res.json();
    		console.log(response);

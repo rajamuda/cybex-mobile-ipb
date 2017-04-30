@@ -36,7 +36,7 @@ export class TulisKomentarPage {
         this.id_user_input = this.userData.ids;
         this.input = JSON.stringify({id_artikel: this.id_artikel, isi_komentar: this.isi_komentar, id_user_input: this.id_user_input});
         console.log(this.input);
-        this.http.post("http://cybex.agri.web.id/api/tulis_komentar.php", this.input).subscribe(data => {
+        this.http.post("http://cybex.ipb.ac.id/api/tulis_komentar.php", this.input).subscribe(data => {
             let v = data.json();
             this.showToast(v['message']);
             this.navCtrl.pop();

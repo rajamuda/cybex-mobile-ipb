@@ -39,11 +39,11 @@ export class TulisDiskusiPage {
   ionViewDidLoad() {
     console.log('Hello TulisDiskusiPage Page');
 
-    this.http.get('http://cybex.agri.web.id/api/all_komoditas.php').subscribe(res => {
+    this.http.get('http://cybex.ipb.ac.id/api/all_komoditas.php').subscribe(res => {
       this.koms = res.json();
     });
 
-    this.http.get('http://cybex.agri.web.id/api/all_topik.php').subscribe(res => {
+    this.http.get('http://cybex.ipb.ac.id/api/all_topik.php').subscribe(res => {
       this.tops = res.json();
     });
 
@@ -121,7 +121,7 @@ export class TulisDiskusiPage {
         this.id_user_input = this.userData.ids;
         this.input = JSON.stringify({isi_artikel: this.isi_diskusi, judul_artikel: this.judul_diskusi, id_kategori: this.id_kategori, id_komoditas: this.id_komoditas, id_user_input: this.id_user_input, id_topik: this.id_topik, gambar: this.gambar});
         console.log(this.input);
-        this.http.post("http://cybex.agri.web.id/api/tulis_artikel.php", this.input).subscribe(data => {
+        this.http.post("http://cybex.ipb.ac.id/api/tulis_artikel.php", this.input).subscribe(data => {
           let v = data.json();
           this.showToast(v['message']);
           this.navCtrl.pop();
