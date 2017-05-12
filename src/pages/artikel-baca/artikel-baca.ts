@@ -24,7 +24,7 @@ export class ArtikelBacaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http,public userData: UserData) {
     this.id = navParams.data;
-
+    //console.log(this.id);
     this.getData();
   }
 
@@ -37,7 +37,7 @@ export class ArtikelBacaPage {
   }
 
   getData() {
-    this.http.get('http://cybex.ipb.ac.id/api/artikel_b.php?idartikel='+this.id).map(res => res.json()).subscribe(data => {
+    this.http.get('http://cybex.ipb.ac.id/api/artikel_b.php?idartikel='+this.id+'&share').map(res => res.json()).subscribe(data => {
         this.posts = data;
 
     });
